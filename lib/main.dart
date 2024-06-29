@@ -19,6 +19,15 @@ class App extends StatelessWidget {
                 ),
                 Positioned(
                   top: 16,
+                  left: 0,
+                  child: Image.asset(
+                    'assets/images/logo.png',
+                    width: 10, // 원하는 너비로 변경하세요
+                    height: 10, // 원하는 높이로 변경하세요
+                  ),
+                ),
+                Positioned(
+                  top: 16,
                   right: 0,
                   child: Row(
                     children: [
@@ -27,6 +36,9 @@ class App extends StatelessWidget {
                       LogoWidget(icon: Icons.menu),
                     ],
                   ),
+                ),
+                const SizedBox(
+                  height: 100,
                 ),
               ],
             ),
@@ -38,9 +50,9 @@ class App extends StatelessWidget {
 }
 
 class LogoWidget extends StatelessWidget {
-  final IconData icon; // 아이콘 데이터를 받는 변수 추가
+  final IconData icon;
 
-  LogoWidget({required this.icon}); // 생성자에서 아이콘 데이터를 받도록 수정
+  LogoWidget({required this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +82,7 @@ class LogoWidget extends StatelessWidget {
             ),
           ],
         ),
-        child: Icon(icon), // icon 변수를 사용하여 아이콘 표시
+        child: Icon(icon),
       ),
     );
   }
