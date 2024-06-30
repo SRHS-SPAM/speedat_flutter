@@ -1,0 +1,308 @@
+import 'package:flutter/material.dart';
+import 'package:speedat_flutter/schedule/tus_screen.dart';
+import 'package:speedat_flutter/schedule/wed_screen.dart';
+import 'package:speedat_flutter/schedule/mon_screen.dart';
+import 'package:speedat_flutter/schedule/fri_screen.dart';
+
+void main() {
+  runApp(App());
+}
+
+class App extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: WedScreen(),
+    );
+  }
+}
+
+class WedScreen extends StatefulWidget {
+  @override
+  _WedScreenState createState() => _WedScreenState();
+}
+
+class _WedScreenState extends State<WedScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        elevation: 0,
+        title: InkWell(
+          onTap: () {
+            Navigator.pushReplacementNamed(context, '/'); // 메인 화면으로 이동
+          },
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: Image.asset(
+                  'assets/images/logo.png', // 로고 이미지 경로
+                  height: 70,
+                  fit: BoxFit.contain,
+                ),
+              ),
+              Spacer(),
+            ],
+          ),
+        ),
+        actions: [
+          LogoWidget(icon: Icons.person),
+          LogoWidget(icon: Icons.nightlight_outlined),
+          Builder(
+            builder: (context) => LogoWidget(
+              icon: Icons.menu,
+              onTap: () {
+                Scaffold.of(context).openEndDrawer();
+              },
+            ),
+          ),
+        ],
+      ),
+      endDrawer: Drawer(
+        child: Container(
+          color: Colors.white, // Drawer의 전체 배경색을 흰색으로 설정
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Container(
+                height: 140,
+                color: Colors.red, // 상단 박스의 배경색을 투명으로 설정
+              ),
+              const ListTile(
+                leading: Icon(Icons.home_outlined),
+                title: Text('홈'),
+              ),
+              const ListTile(
+                leading: Icon(Icons.language),
+                title: Text('커뮤니티'),
+              ),
+              const ListTile(
+                leading: Icon(Icons.schedule),
+                title: Text('시간표'),
+              ),
+              const ListTile(
+                leading: Icon(Icons.restaurant_menu),
+                title: Text('급식표'),
+              ),
+              const ListTile(
+                leading: Icon(Icons.calendar_today),
+                title: Text('달력'),
+              ),
+              const ListTile(
+                leading: Icon(Icons.person),
+                title: Text('마이페이지'),
+              ),
+              const ListTile(
+                leading: Icon(Icons.settings),
+                title: Text('설정'),
+              ),
+            ],
+          ),
+        ),
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              // 회색 구분선 (AppBar 아래에 추가)
+              Container(
+                height: 2,
+                color: Colors.grey[200],
+              ),
+              const Padding(
+                padding: EdgeInsets.only(left: 20.0, top: 20.0),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    '2024년 1학기 시간표',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(left: 20.0, top: 8.0, bottom: 20.0),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    '2학년 6반',
+                    style: TextStyle(fontSize: 16, color: Color(0xFF6B7280)),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Table(
+                  border: TableBorder.all(),
+                  children: [
+                    TableRow(
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MonScreen()),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(vertical: 15),
+                            backgroundColor: const Color(0xFFFEF9C3),
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.zero,
+                            ),
+                          ),
+                          child: const Center(
+                            child: Text(
+                              '월',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => TueScreen()),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(vertical: 15),
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.zero,
+                            ),
+                          ),
+                          child: const Center(
+                            child: Text(
+                              '화',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => WedScreen()),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(vertical: 15),
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.zero,
+                            ),
+                          ),
+                          child: const Center(
+                            child: Text(
+                              '수',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ThuScreen()),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(vertical: 15),
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.zero,
+                            ),
+                          ),
+                          child: const Center(
+                            child: Text(
+                              '목',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => FriScreen()),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(vertical: 15),
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.zero,
+                            ),
+                          ),
+                          child: const Center(
+                            child: Text(
+                              '금',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class LogoWidget extends StatelessWidget {
+  final IconData icon;
+  final VoidCallback? onTap;
+
+  LogoWidget({required this.icon, this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          width: 28,
+          height: 28,
+          clipBehavior: Clip.antiAlias,
+          decoration: ShapeDecoration(
+            color: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4),
+            ),
+            shadows: const [
+              BoxShadow(
+                color: Color(0x1E000000),
+                blurRadius: 2,
+                offset: Offset(0, 0),
+                spreadRadius: 0,
+              ),
+              BoxShadow(
+                color: Color(0x28000000),
+                blurRadius: 4,
+                offset: Offset(0, 2),
+                spreadRadius: 0,
+              ),
+            ],
+          ),
+          child: Icon(icon),
+        ),
+      ),
+    );
+  }
+}
