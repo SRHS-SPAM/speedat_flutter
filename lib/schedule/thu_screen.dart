@@ -152,7 +152,6 @@ class _ThuScreenState extends State<ThuScreen> {
                           },
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(vertical: 15),
-                            backgroundColor: const Color(0xFFFEF9C3),
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.zero,
                             ),
@@ -162,7 +161,6 @@ class _ThuScreenState extends State<ThuScreen> {
                               '월',
                               style: TextStyle(
                                 fontSize: 20,
-                                fontWeight: FontWeight.w900,
                               ),
                             ),
                           ),
@@ -219,6 +217,7 @@ class _ThuScreenState extends State<ThuScreen> {
                           },
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(vertical: 15),
+                            backgroundColor: const Color(0xFFFEF9C3),
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.zero,
                             ),
@@ -226,7 +225,10 @@ class _ThuScreenState extends State<ThuScreen> {
                           child: const Center(
                             child: Text(
                               '목',
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w900,
+                              ),
                             ),
                           ),
                         ),
@@ -256,9 +258,60 @@ class _ThuScreenState extends State<ThuScreen> {
                   ],
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Table(
+                  border: TableBorder.all(),
+                  children: [
+                    TableRow(children: [
+                      createCell('1교시\n8:40 ~ 9:30'),
+                      createCell('로봇디자인'),
+                    ]),
+                    TableRow(children: [
+                      createCell('2교시\n9:40 ~ 10:30'),
+                      createCell('로봇디자인'),
+                    ]),
+                    TableRow(children: [
+                      createCell('3교시\n10:40 ~ 11:30'),
+                      createCell('영어'),
+                    ]),
+                    TableRow(children: [
+                      createCell('4교시\n11:40 ~ 12:30'),
+                      createCell('체육'),
+                    ]),
+                    TableRow(children: [
+                      createCell('점심시간\n12:30 ~ 13:20'),
+                      createCell(''),
+                    ]),
+                    TableRow(children: [
+                      createCell('5교시\n13:20 ~ 14:10'),
+                      createCell('인공지능'),
+                    ]),
+                    TableRow(children: [
+                      createCell('6교시\n14:20 ~ 15:10'),
+                      createCell('인공지능'),
+                    ]),
+                    TableRow(children: [
+                      createCell('7교시\n15:20 ~ 16:10'),
+                      createCell('인공지능'),
+                    ]),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget createCell(String content) {
+    return Container(
+      padding: EdgeInsets.all(8.0),
+      child: Text(
+        content,
+        style: TextStyle(fontSize: 16.0),
+        textAlign: TextAlign.center,
       ),
     );
   }

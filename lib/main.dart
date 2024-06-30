@@ -3,6 +3,7 @@ import 'package:speedat_flutter/meals/breakfast_screen.dart';
 import 'package:speedat_flutter/meals/lunch_screen.dart';
 import 'package:speedat_flutter/meals/dinner_screen.dart';
 import 'package:speedat_flutter/schedule/mon_screen.dart';
+import 'package:speedat_flutter/calendar/calendar.dart';
 
 void main() {
   runApp(App());
@@ -73,7 +74,19 @@ class MyHomePage extends StatelessWidget {
                 );
               },
               child: const Text(
-                '월요일 시간표',
+                '시간표',
+                style: TextStyle(fontSize: 20, color: Colors.black),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CalScreen()),
+                );
+              },
+              child: const Text(
+                '달력표',
                 style: TextStyle(fontSize: 20, color: Colors.black),
               ),
             ),
