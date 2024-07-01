@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'splash_screen.dart'; // splash_screen.dart 파일을 임포트
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:speedat_flutter/meals/breakfast_screen.dart';
+import 'package:speedat_flutter/calendar/calendar.dart';
+import 'package:speedat_flutter/schedule/mon_screen.dart';
+import 'package:speedat_flutter/mypage_screen.dart';
+import 'package:speedat_flutter/setting_screen.dart';
 
 void main() {
   initializeDateFormatting().then((_) => runApp(MyApp()));
@@ -11,7 +16,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: SplashScreen(), // 앱 시작 시 SplashScreen을 표시
+      initialRoute: '/',
+      routes: {
+        '/': (context) => SplashScreen(), // 앱 시작 시 SplashScreen을 표시
+        '/home': (context) => HomeScreen(),
+        '/bob': (context) => BreakfastScreen(),
+        '/cal': (context) => CalScreen(),
+        '/mon': (context) => MonScreen(),
+        '/my': (context) => MyScreen(),
+        '/set': (context) => SetScreen(),
+      },
     );
   }
 }
@@ -26,7 +40,7 @@ class HomeScreen extends StatelessWidget {
         elevation: 0,
         title: InkWell(
           onTap: () {
-            Navigator.pushReplacementNamed(context, '/'); // 메인 화면으로 이동
+            Navigator.pushReplacementNamed(context, '/home'); // 메인 화면으로 이동
           },
           child: Row(
             children: [
@@ -65,46 +79,75 @@ class HomeScreen extends StatelessWidget {
                 height: 140,
                 color: Colors.black12, // 상단 박스의 배경색을 투명으로 설정
               ),
-              ListTile(
-                leading: const Icon(Icons.home_outlined),
-                title: const Text('홈'),
-                onTap: () {
-                  Navigator.pop(context); // 드로어 닫기
-                  Navigator.pushNamed(context, '/'); // '/main'으로 이동
-                },
+              Container(
+                color: Colors.yellow[100], // '시간표' 항목 배경색을 연한 노란색으로 설정
+                child: ListTile(
+                  leading: const Icon(Icons.home_outlined),
+                  title: const Text('홈'),
+                  onTap: () {
+                    Navigator.pop(context); // 드로어 닫기
+                    Navigator.pushNamed(context, '/home'); // '/main'으로 이동
+                  },
+                ),
               ),
               const ListTile(
                 leading: Icon(Icons.language),
                 title: Text('커뮤니티'),
               ),
-              const ListTile(
-                leading: Icon(Icons.restaurant_menu),
-                title: Text('커뮤니티'),
-              ),
-              const ListTile(
-                leading: Icon(Icons.schedule),
-                title: Text('시간표'),
-              ),
               Container(
-                color: Colors.yellow[100], // '시간표' 항목 배경색을 연한 노란색으로 설정
-                child: const ListTile(
-                  leading: Icon(Icons.calendar_today),
-                  title: Text('달력'),
+                child: ListTile(
+                  leading: const Icon(Icons.restaurant_menu),
+                  title: const Text('급십실'),
+                  onTap: () {
+                    Navigator.pop(context); // 드로어 닫기
+                    Navigator.pushNamed(context, '/bob'); // '/main'으로 이동
+                  },
                 ),
               ),
-
+              Container(
+                child: ListTile(
+                  leading: const Icon(Icons.schedule),
+                  title: const Text('시간표'),
+                  onTap: () {
+                    Navigator.pop(context); // 드로어 닫기
+                    Navigator.pushNamed(context, '/mon'); // '/main'으로 이동
+                  },
+                ),
+              ),
+              Container(
+                child: ListTile(
+                  leading: const Icon(Icons.calendar_today),
+                  title: const Text('달력'),
+                  onTap: () {
+                    Navigator.pop(context); // 드로어 닫기
+                    Navigator.pushNamed(context, '/cal'); // '/main'으로 이동
+                  },
+                ),
+              ),
               const Divider(), // 구분선 추가
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: Text('계정', style: TextStyle(color: Colors.grey)),
               ),
-              const ListTile(
-                leading: Icon(Icons.person),
-                title: Text('마이페이지'),
+              Container(
+                child: ListTile(
+                  leading: const Icon(Icons.person),
+                  title: const Text('마이페이지'),
+                  onTap: () {
+                    Navigator.pop(context); // 드로어 닫기
+                    Navigator.pushNamed(context, '/my'); // '/main'으로 이동
+                  },
+                ),
               ),
-              const ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('설정'),
+              Container(
+                child: ListTile(
+                  leading: const Icon(Icons.settings),
+                  title: const Text('설정'),
+                  onTap: () {
+                    Navigator.pop(context); // 드로어 닫기
+                    Navigator.pushNamed(context, '/set'); // '/main'으로 이동
+                  },
+                ),
               ),
             ],
           ),
@@ -128,18 +171,18 @@ class HomeScreen extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(
+                    const Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
+                          Text(
                             '서울로봇고등학교\n커뮤니티 & 웹사이트 앱',
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          const SizedBox(height: 1),
+                          SizedBox(height: 1),
                           Text(
                             'Speedat',
                             style: TextStyle(
@@ -151,8 +194,8 @@ class HomeScreen extends StatelessWidget {
                                   Color.fromARGB(255, 253, 176, 10), // 밑줄 색상 설정
                             ),
                           ),
-                          const SizedBox(height: 5),
-                          const Text(
+                          SizedBox(height: 5),
+                          Text(
                             '학교 정보를 더 빠르고 간편하게!',
                             style: TextStyle(fontSize: 16),
                           ),
@@ -177,7 +220,7 @@ class HomeScreen extends StatelessWidget {
               ),
 
               //달력 이름
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(left: 15.0, top: 32.0),
                 child: Align(
                   alignment: Alignment.centerLeft,
@@ -192,10 +235,10 @@ class HomeScreen extends StatelessWidget {
               ),
 
               // 달력 mealcard
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
+                  SizedBox(
                     width: 425,
                     child: MealCardWithCalendar(
                       mealType: '',
@@ -211,14 +254,14 @@ class HomeScreen extends StatelessWidget {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Container(
+                      child: SizedBox(
                         height: 150, // 높이를 동일하게 맞추기 위해 고정 높이 설정
                         child: Card(
                           child: Column(
                             mainAxisAlignment:
                                 MainAxisAlignment.center, // 내용 중앙 정렬
                             children: <Widget>[
-                              ListTile(
+                              const ListTile(
                                 leading: Icon(Icons.event),
                                 title: Text('달력 바로가기'),
                               ),
@@ -229,13 +272,14 @@ class HomeScreen extends StatelessWidget {
                                   TextButton(
                                     style: TextButton.styleFrom(
                                       minimumSize: Size(100, 40), // 버튼 크기 설정
-                                      backgroundColor: Color.fromARGB(
+                                      backgroundColor: const Color.fromARGB(
                                           255, 253, 176, 10), // 버튼 배경색 노란색으로 설정
-                                      padding: EdgeInsets.symmetric(
+                                      padding: const EdgeInsets.symmetric(
                                           horizontal: 16.0),
                                     ),
                                     onPressed: () {
-                                      // TODO: 버튼 클릭 시 달력으로 바로가기 동작 추가
+                                      Navigator.pushReplacementNamed(
+                                          context, '/cal');
                                     },
                                     child: const Text(
                                       '바로가기',
@@ -529,7 +573,8 @@ class HomeScreen extends StatelessWidget {
                                     ),
                                   ),
                                   onPressed: () {
-                                    // TODO: 버튼 클릭 시 동작 추가
+                                    Navigator.pushReplacementNamed(
+                                        context, '/mon');
                                   },
                                   child: Text(
                                     '시간표 바로가기',
@@ -819,7 +864,7 @@ class MealCard extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                // TODO: 커뮤니티 바로가기 기능 구현
+                Navigator.pushReplacementNamed(context, '/bob');
               },
               child: Text(
                 '급식 바로가기',
