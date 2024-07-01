@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:speedat_flutter/calendar/calendar.dart';
 import 'package:speedat_flutter/main.dart';
 import 'package:speedat_flutter/meals/breakfast_screen.dart';
+import 'package:speedat_flutter/mypage_screen.dart';
 import 'package:speedat_flutter/resetting_screen.dart';
+import 'package:speedat_flutter/schedule/mon_screen.dart';
+import 'package:speedat_flutter/splash_screen.dart';
 
 void main() {
   runApp(App());
@@ -13,8 +17,13 @@ class App extends StatelessWidget {
     return MaterialApp(
       home: SetScreen(),
       routes: {
-        '/': (context) => HomeScreen(),
-        '/meal': (context) => BreakfastScreen(),
+        '/': (context) => SplashScreen(), // 앱 시작 시 SplashScreen을 표시
+        '/home': (context) => HomeScreen(),
+        '/bob': (context) => BreakfastScreen(),
+        '/cal': (context) => CalScreen(),
+        '/mon': (context) => MonScreen(),
+        '/my': (context) => MyScreen(),
+        '/set': (context) => SetScreen(),
       },
     );
   }

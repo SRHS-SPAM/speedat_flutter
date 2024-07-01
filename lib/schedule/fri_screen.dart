@@ -98,33 +98,53 @@ class _FriScreenState extends State<FriScreen> {
                 leading: Icon(Icons.language),
                 title: Text('커뮤니티'),
               ),
-              const ListTile(
-                leading: Icon(Icons.restaurant_menu),
-                title: Text('커뮤니티'),
+              ListTile(
+                leading: const Icon(Icons.restaurant_menu),
+                title: const Text('급십실'),
+                onTap: () {
+                  Navigator.pop(context); // 드로어 닫기
+                  Navigator.pushNamed(context, '/bob'); // '/main'으로 이동
+                },
               ),
               Container(
                 color: Colors.yellow[100], // '시간표' 항목 배경색을 연한 노란색으로 설정
-                child: const ListTile(
-                  leading: Icon(Icons.schedule),
-                  title: Text('시간표'),
+                child: ListTile(
+                  leading: const Icon(Icons.calendar_today),
+                  title: const Text('시간표'),
+                  onTap: () {
+                    Navigator.pop(context); // 드로어 닫기
+                    Navigator.pushNamed(context, '/mon'); // '/main'으로 이동
+                  },
                 ),
               ),
-              const ListTile(
-                leading: Icon(Icons.calendar_today),
-                title: Text('달력'),
+              ListTile(
+                leading: const Icon(Icons.schedule),
+                title: const Text('달력'),
+                onTap: () {
+                  Navigator.pop(context); // 드로어 닫기
+                  Navigator.pushNamed(context, '/cal'); // '/main'으로 이동
+                },
               ),
               const Divider(), // 구분선 추가
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: Text('계정', style: TextStyle(color: Colors.grey)),
               ),
-              const ListTile(
-                leading: Icon(Icons.person),
-                title: Text('마이페이지'),
+              ListTile(
+                leading: const Icon(Icons.person),
+                title: const Text('마이페이지'),
+                onTap: () {
+                  Navigator.pop(context); // 드로어 닫기
+                  Navigator.pushNamed(context, '/my'); // '/main'으로 이동
+                },
               ),
-              const ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('설정'),
+              ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text('설정'),
+                onTap: () {
+                  Navigator.pop(context); // 드로어 닫기
+                  Navigator.pushNamed(context, '/set'); // '/main'으로 이동
+                },
               ),
             ],
           ),
