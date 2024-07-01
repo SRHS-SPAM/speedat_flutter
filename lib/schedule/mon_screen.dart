@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:speedat_flutter/calendar/calendar.dart';
 import 'package:speedat_flutter/main.dart';
 import 'package:speedat_flutter/meals/breakfast_screen.dart';
+import 'package:speedat_flutter/mypage_screen.dart';
 import 'package:speedat_flutter/schedule/tus_screen.dart';
 import 'package:speedat_flutter/schedule/wed_screen.dart';
 import 'package:speedat_flutter/schedule/thu_screen.dart';
 import 'package:speedat_flutter/schedule/fri_screen.dart';
+import 'package:speedat_flutter/setting_screen.dart';
+import 'package:speedat_flutter/splash_screen.dart';
 
 void main() {
   runApp(App());
@@ -16,8 +20,13 @@ class App extends StatelessWidget {
     return MaterialApp(
       home: MonScreen(),
       routes: {
-        '/': (context) => HomeScreen(),
-        '/meal': (context) => BreakfastScreen(),
+        '/': (context) => SplashScreen(), // 앱 시작 시 SplashScreen을 표시
+        '/home': (context) => HomeScreen(),
+        '/bob': (context) => BreakfastScreen(),
+        '/cal': (context) => CalScreen(),
+        '/mon': (context) => MonScreen(),
+        '/my': (context) => MyScreen(),
+        '/set': (context) => SetScreen(),
       },
     );
   }
@@ -38,7 +47,7 @@ class _MonScreenState extends State<MonScreen> {
         elevation: 0,
         title: InkWell(
           onTap: () {
-            Navigator.pushReplacementNamed(context, '/'); // 메인 화면으로 이동
+            Navigator.pushReplacementNamed(context, '/home'); // 메인 화면으로 이동
           },
           child: Row(
             children: [
