@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:speedat_flutter/main.dart';
-
 import 'package:table_calendar/table_calendar.dart';
 
 void main() {
@@ -31,6 +29,10 @@ class _CalScreenState extends State<CalScreen> {
   Map<DateTime, List<Event>> selectedEvents = {};
   bool isAddingEvent = false;
   TextEditingController _eventController = TextEditingController();
+  TextEditingController _memoController = TextEditingController();
+  TimeOfDay? _startTime;
+  TimeOfDay? _endTime;
+  Color _selectedColor = Colors.red;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +80,7 @@ class _CalScreenState extends State<CalScreen> {
             children: <Widget>[
               Container(
                 height: 140,
-                color: Colors.red, // 상단 박스의 배경색을 투명으로 설정
+                color: Colors.black12, // 상단 박스의 배경색을 투명으로 설정
               ),
               ListTile(
                 leading: const Icon(Icons.home_outlined),
@@ -172,6 +174,7 @@ class _CalScreenState extends State<CalScreen> {
                 title: Text(event.title),
                 subtitle: Text(
                     '${event.startTime.format(context)} - ${event.endTime.format(context)}'),
+                tileColor: event.color,
               ))
           .toList(),
     );
@@ -188,9 +191,94 @@ class _CalScreenState extends State<CalScreen> {
               labelText: '제목',
             ),
           ),
+          SizedBox(height: 8.0),
+          TextField(
+            controller: _memoController,
+            decoration: InputDecoration(
+              labelText: '메모 입력',
+            ),
+          ),
+          SizedBox(height: 8.0),
           Row(
             children: [
-              Text('메모 입력'),
+              Expanded(
+                child: TextFormField(
+                  readOnly: true,
+                  decoration: InputDecoration(
+                    labelText: '시작 시간',
+                  ),
+                  onTap: () async {
+                    TimeOfDay? time = await showTimePicker(
+                      context: context,
+                      initialTime: TimeOfDay.now(),
+                    );
+                    if (time != null) {
+                      setState(() {
+                        _startTime = time;
+                      });
+                    }
+                  },
+                  controller: TextEditingController(
+                    text: _startTime != null ? _startTime!.format(context) : '',
+                  ),
+                ),
+              ),
+              SizedBox(width: 8.0),
+              Expanded(
+                child: TextFormField(
+                  readOnly: true,
+                  decoration: InputDecoration(
+                    labelText: '종료 시간',
+                  ),
+                  onTap: () async {
+                    TimeOfDay? time = await showTimePicker(
+                      context: context,
+                      initialTime: TimeOfDay.now(),
+                    );
+                    if (time != null) {
+                      setState(() {
+                        _endTime = time;
+                      });
+                    }
+                  },
+                  controller: TextEditingController(
+                    text: _endTime != null ? _endTime!.format(context) : '',
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 8.0),
+          Row(
+            children: [
+              Text('메모 컬러 변경'),
+              SizedBox(width: 8.0),
+              DropdownButton<Color>(
+                value: _selectedColor,
+                onChanged: (Color? newColor) {
+                  setState(() {
+                    _selectedColor = newColor!;
+                  });
+                },
+                items: <Color>[
+                  Colors.red,
+                  Colors.orange,
+                  Colors.yellow,
+                  Colors.green,
+                  Colors.blue,
+                  Colors.indigo,
+                  Colors.purple
+                ].map<DropdownMenuItem<Color>>((Color value) {
+                  return DropdownMenuItem<Color>(
+                    value: value,
+                    child: Container(
+                      width: 24,
+                      height: 24,
+                      color: value,
+                    ),
+                  );
+                }).toList(),
+              ),
             ],
           ),
           SizedBox(height: 8.0),
@@ -202,8 +290,10 @@ class _CalScreenState extends State<CalScreen> {
                     setState(() {
                       final event = Event(
                         title: _eventController.text,
-                        startTime: TimeOfDay(hour: 4, minute: 0),
-                        endTime: TimeOfDay(hour: 5, minute: 0),
+                        memo: _memoController.text,
+                        startTime: _startTime ?? TimeOfDay(hour: 0, minute: 0),
+                        endTime: _endTime ?? TimeOfDay(hour: 0, minute: 0),
+                        color: _selectedColor,
                       );
                       if (selectedEvents[_selectedDay] != null) {
                         selectedEvents[_selectedDay]!.add(event);
@@ -211,6 +301,9 @@ class _CalScreenState extends State<CalScreen> {
                         selectedEvents[_selectedDay] = [event];
                       }
                       _eventController.clear();
+                      _memoController.clear();
+                      _startTime = null;
+                      _endTime = null;
                       isAddingEvent = false;
                     });
                   },
@@ -281,12 +374,30 @@ class LogoWidget extends StatelessWidget {
 
 class Event {
   final String title;
+  final String memo;
   final TimeOfDay startTime;
   final TimeOfDay endTime;
+  final Color color;
 
   Event({
     required this.title,
+    required this.memo,
     required this.startTime,
     required this.endTime,
+    required this.color,
   });
+}
+
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('My Home Page'),
+      ),
+      body: Center(
+        child: Text('Welcome to My Home Page!'),
+      ),
+    );
+  }
 }

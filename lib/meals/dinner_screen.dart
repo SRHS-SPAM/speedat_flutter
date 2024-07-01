@@ -60,38 +60,57 @@ class _DinnerScreenState extends State<DinnerScreen> {
         ],
       ),
       endDrawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: const <Widget>[
-            ListTile(
-              leading: Icon(Icons.home_outlined),
-              title: Text('홈'),
-            ),
-            ListTile(
-              leading: Icon(Icons.language),
-              title: Text('커뮤니티'),
-            ),
-            ListTile(
-              leading: Icon(Icons.schedule),
-              title: Text('시간표'),
-            ),
-            ListTile(
-              leading: Icon(Icons.restaurant_menu),
-              title: Text('급식표'),
-            ),
-            ListTile(
-              leading: Icon(Icons.calendar_today),
-              title: Text('달력'),
-            ),
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text('마이페이지'),
-            ),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('설정'),
-            ),
-          ],
+        child: Container(
+          color: Colors.white, // Drawer의 전체 배경색을 흰색으로 설정
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Container(
+                height: 140,
+                color: Colors.black12, // 상단 박스의 배경색을 투명으로 설정
+              ),
+              ListTile(
+                leading: const Icon(Icons.home_outlined),
+                title: const Text('홈'),
+                onTap: () {
+                  Navigator.pop(context); // 드로어 닫기
+                  Navigator.pushNamed(context, '/'); // '/main'으로 이동
+                },
+              ),
+              const ListTile(
+                leading: Icon(Icons.language),
+                title: Text('커뮤니티'),
+              ),
+              Container(
+                color: Colors.yellow[100], // '급식표' 항목 배경색을 연한 노란색으로 설정
+                child: const ListTile(
+                  leading: Icon(Icons.restaurant_menu),
+                  title: Text('급식표'),
+                ),
+              ),
+              const ListTile(
+                leading: Icon(Icons.schedule),
+                title: Text('시간표'),
+              ),
+              const ListTile(
+                leading: Icon(Icons.calendar_today),
+                title: Text('달력'),
+              ),
+              Divider(), // 구분선 추가
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text('계정', style: TextStyle(color: Colors.grey)),
+              ),
+              const ListTile(
+                leading: Icon(Icons.person),
+                title: Text('마이페이지'),
+              ),
+              const ListTile(
+                leading: Icon(Icons.settings),
+                title: Text('설정'),
+              ),
+            ],
+          ),
         ),
       ),
       body: SafeArea(

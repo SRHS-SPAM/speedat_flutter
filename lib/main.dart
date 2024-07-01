@@ -4,6 +4,9 @@ import 'package:speedat_flutter/meals/lunch_screen.dart';
 import 'package:speedat_flutter/meals/dinner_screen.dart';
 import 'package:speedat_flutter/schedule/mon_screen.dart';
 import 'package:speedat_flutter/calendar/calendar.dart';
+import 'package:speedat_flutter/mypage_screen.dart';
+import 'package:speedat_flutter/setting_screen.dart';
+import 'package:speedat_flutter/resetting_screen.dart';
 
 void main() {
   runApp(App());
@@ -87,6 +90,42 @@ class MyHomePage extends StatelessWidget {
               },
               child: const Text(
                 '달력표',
+                style: TextStyle(fontSize: 20, color: Colors.black),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyScreen()),
+                );
+              },
+              child: const Text(
+                '마이페이지',
+                style: TextStyle(fontSize: 20, color: Colors.black),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SetScreen()),
+                );
+              },
+              child: const Text(
+                '설정',
+                style: TextStyle(fontSize: 20, color: Colors.black),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ResScreen()),
+                );
+              },
+              child: const Text(
+                '재설정',
                 style: TextStyle(fontSize: 20, color: Colors.black),
               ),
             ),

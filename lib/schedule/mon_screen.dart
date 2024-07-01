@@ -75,7 +75,7 @@ class _MonScreenState extends State<MonScreen> {
             children: <Widget>[
               Container(
                 height: 140,
-                color: Colors.red, // 상단 박스의 배경색을 투명으로 설정
+                color: Colors.black12, // 상단 박스의 배경색을 투명으로 설정
               ),
               ListTile(
                 leading: const Icon(Icons.home_outlined),
