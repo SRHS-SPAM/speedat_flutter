@@ -22,25 +22,93 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        elevation: 0, // 그림자 제거
-        title: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0), // 왼쪽 여백 추가
-              child: Image.asset(
-                'assets/images/logo.png', // 로고 이미지 경로
-                height: 70, // 이미지 높이 설정
-                fit: BoxFit.contain, // 이미지 비율 유지
+        automaticallyImplyLeading: false,
+        elevation: 0,
+        title: InkWell(
+          onTap: () {
+            Navigator.pushReplacementNamed(context, '/'); // 메인 화면으로 이동
+          },
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: Image.asset(
+                  'assets/images/logo.png', // 로고 이미지 경로
+                  height: 70,
+                  fit: BoxFit.contain,
+                ),
               ),
-            ),
-            Spacer(), // 남은 공간을 채워서 중앙에 위치하도록 조정
-          ],
+              const Spacer(),
+            ],
+          ),
         ),
         actions: [
-          LogoWidget(icon: Icons.person),
-          LogoWidget(icon: Icons.nightlight_outlined),
-          LogoWidget(icon: Icons.menu),
+          const LogoWidget(icon: Icons.person),
+          const LogoWidget(icon: Icons.nightlight_outlined),
+          Builder(
+            builder: (context) => LogoWidget(
+              icon: Icons.menu,
+              onTap: () {
+                Scaffold.of(context).openEndDrawer();
+              },
+            ),
+          ),
         ],
+      ),
+      endDrawer: Drawer(
+        child: Container(
+          color: Colors.white, // Drawer의 전체 배경색을 흰색으로 설정
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Container(
+                height: 140,
+                color: Colors.black12, // 상단 박스의 배경색을 투명으로 설정
+              ),
+              ListTile(
+                leading: const Icon(Icons.home_outlined),
+                title: const Text('홈'),
+                onTap: () {
+                  Navigator.pop(context); // 드로어 닫기
+                  Navigator.pushNamed(context, '/'); // '/main'으로 이동
+                },
+              ),
+              const ListTile(
+                leading: Icon(Icons.language),
+                title: Text('커뮤니티'),
+              ),
+              const ListTile(
+                leading: Icon(Icons.restaurant_menu),
+                title: Text('커뮤니티'),
+              ),
+              const ListTile(
+                leading: Icon(Icons.schedule),
+                title: Text('시간표'),
+              ),
+              Container(
+                color: Colors.yellow[100], // '시간표' 항목 배경색을 연한 노란색으로 설정
+                child: const ListTile(
+                  leading: Icon(Icons.calendar_today),
+                  title: Text('달력'),
+                ),
+              ),
+
+              const Divider(), // 구분선 추가
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text('계정', style: TextStyle(color: Colors.grey)),
+              ),
+              const ListTile(
+                leading: Icon(Icons.person),
+                title: Text('마이페이지'),
+              ),
+              const ListTile(
+                leading: Icon(Icons.settings),
+                title: Text('설정'),
+              ),
+            ],
+          ),
+        ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -575,20 +643,41 @@ DateFormat(String s) {}
 
 class LogoWidget extends StatelessWidget {
   final IconData icon;
+  final VoidCallback? onTap;
 
-  const LogoWidget({required this.icon});
+  const LogoWidget({super.key, required this.icon, this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: InkWell(
-        onTap: () {
-          // TODO: Add functionality for logo icon buttons if needed
-        },
-        child: Icon(
-          icon,
-          color: Colors.grey[700],
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          width: 28,
+          height: 28,
+          clipBehavior: Clip.antiAlias,
+          decoration: ShapeDecoration(
+            color: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4),
+            ),
+            shadows: const [
+              BoxShadow(
+                color: Color(0x1E000000),
+                blurRadius: 2,
+                offset: Offset(0, 0),
+                spreadRadius: 0,
+              ),
+              BoxShadow(
+                color: Color(0x28000000),
+                blurRadius: 4,
+                offset: Offset(0, 2),
+                spreadRadius: 0,
+              ),
+            ],
+          ),
+          child: Icon(icon),
         ),
       ),
     );
