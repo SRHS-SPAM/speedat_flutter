@@ -16,7 +16,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       home: MonScreen(),
       routes: {
-        '/': (context) => MyHomePage(),
+        '/': (context) => HomeScreen(),
         '/meal': (context) => BreakfastScreen(),
       },
     );

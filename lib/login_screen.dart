@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'sign_screen.dart';
-import 'main.dart';
+import 'package:speedat_flutter/main.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -117,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => MyHomePage()),
+                                  builder: (context) => HomeScreen()),
                             );
                           },
                           style: ElevatedButton.styleFrom(

@@ -12,7 +12,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       home: MyScreen(),
       routes: {
-        '/': (context) => MyHomePage(),
+        '/': (context) => HomeScreen(),
         '/meal': (context) => BreakfastScreen(),
       },
     );
