@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:speedat_flutter/main.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 void main() {
@@ -95,16 +96,25 @@ class _CalScreenState extends State<CalScreen> {
                 title: Text('커뮤니티'),
               ),
               const ListTile(
+                leading: Icon(Icons.restaurant_menu),
+                title: Text('커뮤니티'),
+              ),
+              const ListTile(
                 leading: Icon(Icons.schedule),
                 title: Text('시간표'),
               ),
-              const ListTile(
-                leading: Icon(Icons.restaurant_menu),
-                title: Text('급식표'),
+              Container(
+                color: Colors.yellow[100], // '시간표' 항목 배경색을 연한 노란색으로 설정
+                child: const ListTile(
+                  leading: Icon(Icons.calendar_today),
+                  title: Text('달력'),
+                ),
               ),
-              const ListTile(
-                leading: Icon(Icons.calendar_today),
-                title: Text('달력'),
+
+              const Divider(), // 구분선 추가
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text('계정', style: TextStyle(color: Colors.grey)),
               ),
               const ListTile(
                 leading: Icon(Icons.person),
@@ -386,18 +396,4 @@ class Event {
     required this.endTime,
     required this.color,
   });
-}
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('My Home Page'),
-      ),
-      body: Center(
-        child: Text('Welcome to My Home Page!'),
-      ),
-    );
-  }
 }

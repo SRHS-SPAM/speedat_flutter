@@ -98,9 +98,9 @@ class _WedScreenState extends State<WedScreen> {
                 leading: Icon(Icons.calendar_today),
                 title: Text('달력'),
               ),
-              Divider(), // 구분선 추가
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              const Divider(), // 구분선 추가
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: Text('계정', style: TextStyle(color: Colors.grey)),
               ),
               const ListTile(
@@ -173,6 +173,7 @@ class _WedScreenState extends State<WedScreen> {
                               '월',
                               style: TextStyle(
                                 fontSize: 20,
+                                color: Colors.black, // 텍스트 색상을 검은색으로 설정
                               ),
                             ),
                           ),
@@ -194,7 +195,10 @@ class _WedScreenState extends State<WedScreen> {
                           child: const Center(
                             child: Text(
                               '화',
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black, // 텍스트 색상을 검은색으로 설정
+                              ),
                             ),
                           ),
                         ),
@@ -219,6 +223,7 @@ class _WedScreenState extends State<WedScreen> {
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w900,
+                                color: Colors.black, // 텍스트 색상을 검은색으로 설정
                               ),
                             ),
                           ),
@@ -240,7 +245,10 @@ class _WedScreenState extends State<WedScreen> {
                           child: const Center(
                             child: Text(
                               '목',
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black, // 텍스트 색상을 검은색으로 설정
+                              ),
                             ),
                           ),
                         ),
@@ -261,7 +269,10 @@ class _WedScreenState extends State<WedScreen> {
                           child: const Center(
                             child: Text(
                               '금',
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black, // 텍스트 색상을 검은색으로 설정
+                              ),
                             ),
                           ),
                         ),

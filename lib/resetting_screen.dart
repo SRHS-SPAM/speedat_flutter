@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:speedat_flutter/calendar/calendar.dart';
 import 'package:speedat_flutter/main.dart';
 import 'package:speedat_flutter/meals/breakfast_screen.dart';
 
@@ -14,6 +15,7 @@ class App extends StatelessWidget {
       routes: {
         '/': (context) => MyHomePage(),
         '/meal': (context) => BreakfastScreen(),
+        '/cal': (context) => CalScreen(),
       },
     );
   }
@@ -86,24 +88,36 @@ class _ResScreenState extends State<ResScreen> {
                 title: Text('커뮤니티'),
               ),
               const ListTile(
-                leading: Icon(Icons.schedule),
-                title: Text('시간표'),
-              ),
-              const ListTile(
                 leading: Icon(Icons.restaurant_menu),
                 title: Text('급식표'),
               ),
               const ListTile(
-                leading: Icon(Icons.calendar_today),
-                title: Text('달력'),
+                leading: Icon(Icons.schedule),
+                title: Text('시간표'),
+              ),
+              ListTile(
+                leading: const Icon(Icons.calendar_today),
+                title: const Text('달력'),
+                onTap: () {
+                  Navigator.pop(context); // 드로어 닫기
+                  Navigator.pushNamed(context, '/cal');
+                },
+              ),
+              const Divider(), // 구분선 추가
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text('계정', style: TextStyle(color: Colors.grey)),
               ),
               const ListTile(
                 leading: Icon(Icons.person),
                 title: Text('마이페이지'),
               ),
-              const ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('설정'),
+              Container(
+                color: Colors.yellow[100], // '시간표' 항목 배경색을 연한 노란색으로 설정
+                child: const ListTile(
+                  leading: Icon(Icons.settings),
+                  title: Text('설정'),
+                ),
               ),
             ],
           ),

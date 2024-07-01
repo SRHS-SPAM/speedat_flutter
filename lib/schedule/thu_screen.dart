@@ -164,6 +164,7 @@ class _ThuScreenState extends State<ThuScreen> {
                           },
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(vertical: 15),
+                            backgroundColor: const Color(0xFFFEF9C3),
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.zero,
                             ),
@@ -173,6 +174,8 @@ class _ThuScreenState extends State<ThuScreen> {
                               '월',
                               style: TextStyle(
                                 fontSize: 20,
+                                fontWeight: FontWeight.w900,
+                                color: Colors.black, // 텍스트 색상을 검은색으로 설정
                               ),
                             ),
                           ),
@@ -194,7 +197,10 @@ class _ThuScreenState extends State<ThuScreen> {
                           child: const Center(
                             child: Text(
                               '화',
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black, // 텍스트 색상을 검은색으로 설정
+                              ),
                             ),
                           ),
                         ),
@@ -215,7 +221,10 @@ class _ThuScreenState extends State<ThuScreen> {
                           child: const Center(
                             child: Text(
                               '수',
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black, // 텍스트 색상을 검은색으로 설정
+                              ),
                             ),
                           ),
                         ),
@@ -229,7 +238,6 @@ class _ThuScreenState extends State<ThuScreen> {
                           },
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(vertical: 15),
-                            backgroundColor: const Color(0xFFFEF9C3),
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.zero,
                             ),
@@ -239,7 +247,7 @@ class _ThuScreenState extends State<ThuScreen> {
                               '목',
                               style: TextStyle(
                                 fontSize: 20,
-                                fontWeight: FontWeight.w900,
+                                color: Colors.black, // 텍스트 색상을 검은색으로 설정
                               ),
                             ),
                           ),
@@ -261,7 +269,10 @@ class _ThuScreenState extends State<ThuScreen> {
                           child: const Center(
                             child: Text(
                               '금',
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black, // 텍스트 색상을 검은색으로 설정
+                              ),
                             ),
                           ),
                         ),
@@ -270,6 +281,7 @@ class _ThuScreenState extends State<ThuScreen> {
                   ],
                 ),
               ),
+
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Table(

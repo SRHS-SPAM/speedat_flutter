@@ -173,6 +173,7 @@ class _TueScreenState extends State<TueScreen> {
                               '월',
                               style: TextStyle(
                                 fontSize: 20,
+                                color: Colors.black, // 텍스트 색상을 검은색으로 설정
                               ),
                             ),
                           ),
@@ -198,6 +199,7 @@ class _TueScreenState extends State<TueScreen> {
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w900,
+                                color: Colors.black, // 텍스트 색상을 검은색으로 설정
                               ),
                             ),
                           ),
@@ -219,7 +221,10 @@ class _TueScreenState extends State<TueScreen> {
                           child: const Center(
                             child: Text(
                               '수',
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black, // 텍스트 색상을 검은색으로 설정
+                              ),
                             ),
                           ),
                         ),
@@ -240,7 +245,10 @@ class _TueScreenState extends State<TueScreen> {
                           child: const Center(
                             child: Text(
                               '목',
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black, // 텍스트 색상을 검은색으로 설정
+                              ),
                             ),
                           ),
                         ),
@@ -261,7 +269,10 @@ class _TueScreenState extends State<TueScreen> {
                           child: const Center(
                             child: Text(
                               '금',
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black, // 텍스트 색상을 검은색으로 설정
+                              ),
                             ),
                           ),
                         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:speedat_flutter/main.dart';
 import 'package:speedat_flutter/meals/breakfast_screen.dart';
+import 'package:speedat_flutter/resetting_screen.dart';
 
 void main() {
   runApp(App());
@@ -86,24 +87,32 @@ class _SetScreenState extends State<SetScreen> {
                 title: Text('커뮤니티'),
               ),
               const ListTile(
-                leading: Icon(Icons.schedule),
-                title: Text('시간표'),
+                leading: Icon(Icons.restaurant_menu),
+                title: Text('커뮤니티'),
               ),
               const ListTile(
-                leading: Icon(Icons.restaurant_menu),
-                title: Text('급식표'),
+                leading: Icon(Icons.schedule),
+                title: Text('시간표'),
               ),
               const ListTile(
                 leading: Icon(Icons.calendar_today),
                 title: Text('달력'),
               ),
+              const Divider(), // 구분선 추가
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text('계정', style: TextStyle(color: Colors.grey)),
+              ),
               const ListTile(
                 leading: Icon(Icons.person),
                 title: Text('마이페이지'),
               ),
-              const ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('설정'),
+              Container(
+                color: Colors.yellow[100], // '시간표' 항목 배경색을 연한 노란색으로 설정
+                child: const ListTile(
+                  leading: Icon(Icons.settings),
+                  title: Text('설정'),
+                ),
               ),
             ],
           ),
@@ -129,6 +138,18 @@ class _SetScreenState extends State<SetScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ResScreen()),
+                  );
+                },
+                child: const Text(
+                  '재설정',
+                  style: TextStyle(fontSize: 20, color: Colors.black),
                 ),
               ),
             ],

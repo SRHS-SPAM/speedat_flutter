@@ -90,16 +90,24 @@ class _MonScreenState extends State<MonScreen> {
                 title: Text('커뮤니티'),
               ),
               const ListTile(
-                leading: Icon(Icons.schedule),
-                title: Text('시간표'),
-              ),
-              const ListTile(
                 leading: Icon(Icons.restaurant_menu),
-                title: Text('급식표'),
+                title: Text('커뮤니티'),
+              ),
+              Container(
+                color: Colors.yellow[100], // '시간표' 항목 배경색을 연한 노란색으로 설정
+                child: const ListTile(
+                  leading: Icon(Icons.schedule),
+                  title: Text('시간표'),
+                ),
               ),
               const ListTile(
                 leading: Icon(Icons.calendar_today),
                 title: Text('달력'),
+              ),
+              const Divider(), // 구분선 추가
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text('계정', style: TextStyle(color: Colors.grey)),
               ),
               const ListTile(
                 leading: Icon(Icons.person),
@@ -173,6 +181,7 @@ class _MonScreenState extends State<MonScreen> {
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w900,
+                                color: Colors.black, // 텍스트 색상을 검은색으로 설정
                               ),
                             ),
                           ),
@@ -194,7 +203,10 @@ class _MonScreenState extends State<MonScreen> {
                           child: const Center(
                             child: Text(
                               '화',
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black, // 텍스트 색상을 검은색으로 설정
+                              ),
                             ),
                           ),
                         ),
@@ -215,7 +227,10 @@ class _MonScreenState extends State<MonScreen> {
                           child: const Center(
                             child: Text(
                               '수',
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black, // 텍스트 색상을 검은색으로 설정
+                              ),
                             ),
                           ),
                         ),
@@ -236,7 +251,10 @@ class _MonScreenState extends State<MonScreen> {
                           child: const Center(
                             child: Text(
                               '목',
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black, // 텍스트 색상을 검은색으로 설정
+                              ),
                             ),
                           ),
                         ),
@@ -257,7 +275,10 @@ class _MonScreenState extends State<MonScreen> {
                           child: const Center(
                             child: Text(
                               '금',
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black, // 텍스트 색상을 검은색으로 설정
+                              ),
                             ),
                           ),
                         ),
@@ -266,6 +287,7 @@ class _MonScreenState extends State<MonScreen> {
                   ],
                 ),
               ),
+
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Table(

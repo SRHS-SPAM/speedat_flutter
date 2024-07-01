@@ -86,20 +86,28 @@ class _MyScreenState extends State<MyScreen> {
                 title: Text('커뮤니티'),
               ),
               const ListTile(
-                leading: Icon(Icons.schedule),
-                title: Text('시간표'),
+                leading: Icon(Icons.restaurant_menu),
+                title: Text('커뮤니티'),
               ),
               const ListTile(
-                leading: Icon(Icons.restaurant_menu),
-                title: Text('급식표'),
+                leading: Icon(Icons.schedule),
+                title: Text('시간표'),
               ),
               const ListTile(
                 leading: Icon(Icons.calendar_today),
                 title: Text('달력'),
               ),
-              const ListTile(
-                leading: Icon(Icons.person),
-                title: Text('마이페이지'),
+              const Divider(), // 구분선 추가
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text('계정', style: TextStyle(color: Colors.grey)),
+              ),
+              Container(
+                color: Colors.yellow[100], // '시간표' 항목 배경색을 연한 노란색으로 설정
+                child: const ListTile(
+                  leading: Icon(Icons.person),
+                  title: Text('마이페이지'),
+                ),
               ),
               const ListTile(
                 leading: Icon(Icons.settings),
