@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'splash_screen.dart'; // splash_screen.dart 파일을 임포트
 import 'package:intl/date_symbol_data_local.dart';
+import 'community.dart'; // community_page.dart 파일을 임포트
 
 void main() {
   initializeDateFormatting().then((_) => runApp(MyApp()));
@@ -12,6 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: SplashScreen(), // 앱 시작 시 SplashScreen을 표시
+      routes: {
+        '/community': (context) => Community(), // 커뮤니티 페이지 라우트 추가
+      },
     );
   }
 }
@@ -284,28 +288,14 @@ class HomeScreen extends StatelessWidget {
                       Size(425, 50),
                     ),
                     padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                      EdgeInsets.symmetric(horizontal: 20.0),
+                      EdgeInsets.symmetric(vertical: 15.0),
                     ),
                   ),
                   onPressed: () {
-                    // TODO: 커뮤니티 바로가기 기능 구현
+                    Navigator.pushNamed(context, '/community'); // 커뮤니티 페이지로 이동
                   },
-                  child: Text(
-                    '커뮤니티 바로가기',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
+                  child: Text('커뮤니티 바로가기'),
                 ),
-              ),
-
-              SizedBox(height: 10),
-
-              // 커뮤니티 바로가기 버튼
-
-
-              // 회색 구분선
-              Container(
-                height: 1,
-                color: Colors.grey[300],
               ),
 
               Padding(
@@ -551,7 +541,7 @@ class _MealCardWithCalendarState extends State<MealCardWithCalendar> {
               onDaySelected: (selectedDay, focusedDay) {
                 setState(() {
                   _selectedDay = selectedDay;
-                  _focusedDay = focusedDay; // update `_focusedDay` as well
+                  _focusedDay = focusedDay; // update _focusedDay as well
                 });
               },
             ),
@@ -735,3 +725,4 @@ class MealCard extends StatelessWidget {
   }
 }
 
+            
