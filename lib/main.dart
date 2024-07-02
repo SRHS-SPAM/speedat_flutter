@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'splash_screen.dart'; // splash_screen.dart 파일을 임포트
 import 'package:intl/date_symbol_data_local.dart';
-import 'community.dart'; // community_page.dart 파일을 임포트
+import 'community/community.dart'; // community_page.dart 파일을 임포트
 
 void main() {
   initializeDateFormatting().then((_) => runApp(MyApp()));

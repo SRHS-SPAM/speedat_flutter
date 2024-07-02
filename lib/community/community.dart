@@ -1,37 +1,24 @@
 import 'package:flutter/material.dart';
-import 'community_bord.dart';
+import 'package:speedat_flutter/community/community_bord.dart';
+import 'community_best.dart';
 
-class CommunityBest extends StatefulWidget {
+class Community extends StatefulWidget {
   @override
-  _CommunityBestState createState() => _CommunityBestState();
+  _CommunityState createState() => _CommunityState();
 }
 
-class _CommunityBestState extends State<CommunityBest> {
-  String selectedTab = '인기 글';
-  int currentPage = 1;
-  int totalPages = 10;
-
-  List<Map<String, dynamic>> posts = [
-    {'title': '커뮤니티 글 1', 'description': '여기는 커뮤니티 글 1에 대한 설명입니다.', 'time': '30분 전', 'views': 56, 'likes': 12, 'imageAsset': 'assets/images/communty.png'},
-    {'title': '커뮤니티 글 2', 'description': '여기는 커뮤니티 글 2에 대한 설명입니다.', 'time': '29분 전', 'views': 56, 'likes': 10, 'imageAsset': 'assets/images/communty.png'},
-    {'title': '커뮤니티 글 3', 'description': '여기는 커뮤니티 글 3에 대한 설명입니다.', 'time': '28분 전', 'views': 56, 'likes': 8, 'imageAsset': 'assets/images/communty.png'},
-    {'title': '커뮤니티 글 1', 'description': '여기는 커뮤니티 글 1에 대한 설명입니다.', 'time': '30분 전', 'views': 56, 'likes': 7, 'imageAsset': 'assets/images/communty.png'},
-    {'title': '커뮤니티 글 1', 'description': '여기는 커뮤니티 글 1에 대한 설명입니다.', 'time': '30분 전', 'views': 56, 'likes': 6, 'imageAsset': 'assets/images/communty.png'},
-    {'title': '커뮤니티 글 1', 'description': '여기는 커뮤니티 글 1에 대한 설명입니다.', 'time': '30분 전', 'views': 56, 'likes': 5, 'imageAsset': 'assets/images/communty.png'},
-    {'title': '커뮤니티 글 1', 'description': '여기는 커뮤니티 글 1에 대한 설명입니다.', 'time': '30분 전', 'views': 56, 'likes': 4, 'imageAsset': 'assets/images/communty.png'},
-    {'title': '커뮤니티 글 1', 'description': '여기는 커뮤니티 글 1에 대한 설명입니다.', 'time': '30분 전', 'views': 56, 'likes': 3, 'imageAsset': 'assets/images/communty.png'},
-    {'title': '커뮤니티 글 1', 'description': '여기는 커뮤니티 글 1에 대한 설명입니다.', 'time': '30분 전', 'views': 56, 'likes': 2, 'imageAsset': 'assets/images/communty.png'},
-    {'title': '커뮤니티 글 1', 'description': '여기는 커뮤니티 글 1에 대한 설명입니다.', 'time': '30분 전', 'views': 56, 'likes': 1, 'imageAsset': 'assets/images/communty.png'},
-
-    // Add more mock posts here
-  ];
+class _CommunityState extends State<Community> {
+  String selectedTab = '커뮤니티 홈';
 
   void onTabSelected(String title) {
     setState(() {
       selectedTab = title;
     });
-    if (title == '커뮤니티 홈') {
-      Navigator.pop(context);
+    if (title == '인기 글') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => CommunityBest()),
+      );
     }
     else if (title == '시스템과') {
       Navigator.push(
@@ -41,32 +28,23 @@ class _CommunityBestState extends State<CommunityBest> {
     }
   }
 
-  void onPageChanged(int page) {
-    setState(() {
-      currentPage = page;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> sortedPosts = List.from(posts);
-    sortedPosts.sort((a, b) => b['likes'].compareTo(a['likes']));
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        elevation: 0,
+        elevation: 0, // 그림자 제거
         title: Row(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 20.0),
+              padding: const EdgeInsets.only(left: 20.0), // 왼쪽 여백 추가
               child: Image.asset(
-                'assets/images/logo.png',
-                height: 70,
-                fit: BoxFit.contain,
+                'assets/images/logo.png', // 로고 이미지 경로
+                height: 70, // 이미지 높이 설정
+                fit: BoxFit.contain, // 이미지 비율 유지
               ),
             ),
-            Spacer(),
+            Spacer(), // 남은 공간을 채워서 중앙에 위치하도록 조정
           ],
         ),
         actions: [
@@ -80,12 +58,13 @@ class _CommunityBestState extends State<CommunityBest> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // 회색 구분선 (AppBar 아래에 추가)
               Container(
                 height: 1,
                 color: Colors.grey[300],
               ),
               Container(
-                width: double.infinity,
+                width: double.infinity, // 이미지가 화면 너비에 맞게
                 child: Image.asset(
                   'assets/images/comlable.png',
                   fit: BoxFit.fitWidth,
@@ -129,7 +108,7 @@ class _CommunityBestState extends State<CommunityBest> {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 20), // 이미지 아래 여백 추가
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Row(
@@ -140,8 +119,8 @@ class _CommunityBestState extends State<CommunityBest> {
                       '당신만의 글을 작성해보세요!',
                       style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
-                    const SizedBox(width: 16),
-                    Expanded(
+                    const SizedBox(width: 16), // Text와 TextField 사이의 간격
+                    Expanded( // 텍스트 필드가 남은 공간을 차지하도록
                       child: TextField(
                         decoration: InputDecoration(
                           hintText: '검색',
@@ -156,8 +135,100 @@ class _CommunityBestState extends State<CommunityBest> {
                   ],
                 ),
               ),
-              
               SizedBox(height: 35),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 15.0, vertical: 20.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: '다양한 ',
+                                  style: TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: '이야기',
+                                  style: TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color.fromARGB(255, 253, 176, 10),
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: '가 모이는곳,',
+                                  style: TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          const Text(
+                            '여기서 새로운 우정을 쌓아보세요',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                    Image.asset(
+                      'assets/images/comhome.png',
+                      width: 147,
+                      height: 150,
+                      fit: BoxFit.contain,
+                    ),
+                  ],
+                ),
+              ),
+              
+              Padding(
+                padding: EdgeInsets.only(left: 15, top: 40),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    '최신 글',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                height: 2,
+                color: Colors.grey[600],
+              ),
+              Column(
+                children: List.generate(5, (index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5.0),
+                    child: Container(
+                      width: 425,
+                      height: 110,
+                      child: CommunityCard(
+                        title: '커뮤니티 글 ${index + 1}',
+                        description: '여기는 커뮤니티 글 ${index + 1}에 대한 설명입니다.',
+                        time: '${30 - index}분 전',
+                        views: '${50 + index}',
+                        likes: '${10 - index}',
+                        imageAsset: 'assets/images/communty.png',
+                      ),
+                    ),
+                  );
+                }),
+              ),
               Padding(
                 padding: EdgeInsets.only(left: 15, top: 40),
                 child: Align(
@@ -176,31 +247,23 @@ class _CommunityBestState extends State<CommunityBest> {
                 color: Colors.grey[600],
               ),
               Column(
-                children: List.generate(sortedPosts.length, (index) {
-                  var post = sortedPosts[index];
+                children: List.generate(5, (index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5.0),
                     child: Container(
                       width: 425,
                       height: 110,
                       child: CommunityCard(
-                        rank: index + 1,
-                        title: post['title'],
-                        description: post['description'],
-                        time: post['time'],
-                        views: post['views'].toString(),
-                        likes: post['likes'].toString(),
-                        imageAsset: post['imageAsset'],
+                        title: '커뮤니티 글 ${index + 1}',
+                        description: '여기는 커뮤니티 글 ${index + 1}에 대한 설명입니다.',
+                        time: '${30 - index}분 전',
+                        views: '${50 + index}',
+                        likes: '${10 - index}',
+                        imageAsset: 'assets/images/communty.png',
                       ),
                     ),
                   );
                 }),
-              ),
-              const SizedBox(height: 20),
-              PaginationWidget(
-                currentPage: currentPage,
-                totalPages: totalPages,
-                onPageChanged: onPageChanged,
               ),
             ],
           ),
@@ -221,7 +284,7 @@ class LogoWidget extends StatelessWidget {
       icon: Icon(icon),
       color: Colors.black,
       onPressed: () {
-        // Add functionality here if needed
+        // 아이콘 버튼을 눌렀을 때의 동작을 여기에 추가할 수 있습니다.
       },
     );
   }
@@ -241,7 +304,7 @@ class TabButton extends StatelessWidget {
       child: TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(
-          backgroundColor: isSelected ? Color.fromARGB(255, 253, 176, 10) : Colors.transparent,
+          backgroundColor: isSelected ? Color.fromARGB(255, 253, 176, 10): Colors.transparent,
           foregroundColor: Colors.black,
         ),
         child: Text(
@@ -254,7 +317,6 @@ class TabButton extends StatelessWidget {
 }
 
 class CommunityCard extends StatelessWidget {
-  final int rank;
   final String title;
   final String description;
   final String time;
@@ -264,7 +326,6 @@ class CommunityCard extends StatelessWidget {
 
   const CommunityCard({
     Key? key,
-    required this.rank,
     required this.title,
     required this.description,
     required this.time,
@@ -283,12 +344,7 @@ class CommunityCard extends StatelessWidget {
           height: 70,
           fit: BoxFit.cover,
         ),
-        title: Row(
-          children: [
-            Text('$rank위 ', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange)),
-            Expanded(child: Text(title)),
-          ],
-        ),
+        title: Text(title),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -316,99 +372,9 @@ class CommunityCard extends StatelessWidget {
           ],
         ),
         onTap: () {
-          // TODO: Add functionality for detailed view of the post
+          // TODO: 글 상세보기 기능 추가
         },
       ),
-    );
-  }
-}
-
-class PaginationWidget extends StatelessWidget {
-  final int currentPage;
-  final int totalPages;
-  final ValueChanged<int> onPageChanged;
-
-  const PaginationWidget({
-    Key? key,
-    required this.currentPage,
-    required this.totalPages,
-    required this.onPageChanged,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    List<Widget> pageNumbers = [];
-
-    // Add first and previous buttons
-    pageNumbers.add(
-      IconButton(
-        onPressed: currentPage > 1 ? () => onPageChanged(1) : null,
-        icon: Icon(Icons.first_page),
-        color: Colors.orange,
-      ),
-    );
-    pageNumbers.add(
-      IconButton(
-        onPressed: currentPage > 1 ? () => onPageChanged(currentPage - 1) : null,
-        icon: Icon(Icons.chevron_left),
-        color: Colors.orange,
-      ),
-    );
-
-    // Add page number buttons
-    for (int i = 1; i <= totalPages; i++) {
-      if (i == currentPage || i == 1 || i == totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
-        pageNumbers.add(
-          GestureDetector(
-            onTap: () => onPageChanged(i),
-            child: Container(
-              padding: EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: currentPage == i ? Colors.orange : Colors.transparent,
-                borderRadius: BorderRadius.circular(5),
-              ),
-              child: Text(
-                i.toString(),
-                style: TextStyle(
-                  color: currentPage == i ? Colors.black : Colors.grey,
-                  fontWeight: currentPage == i ? FontWeight.bold : FontWeight.normal,
-                ),
-              ),
-            ),
-          ),
-        );
-      } else if (i == currentPage - 2 || i == currentPage + 2) {
-        pageNumbers.add(
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.0),
-            child: Text(
-              '...',
-              style: TextStyle(fontSize: 18, color: Colors.grey),
-            ),
-          ),
-        );
-      }
-    }
-
-    // Add next and last buttons
-    pageNumbers.add(
-      IconButton(
-        onPressed: currentPage < totalPages ? () => onPageChanged(currentPage + 1) : null,
-        icon: Icon(Icons.chevron_right),
-        color: Colors.orange,
-      ),
-    );
-    pageNumbers.add(
-      IconButton(
-        onPressed: currentPage < totalPages ? () => onPageChanged(totalPages) : null,
-        icon: Icon(Icons.last_page),
-        color: Colors.orange,
-      ),
-    );
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: pageNumbers,
     );
   }
 }
