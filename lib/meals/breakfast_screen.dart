@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:speedat_flutter/calendar/calendar.dart';
+import 'package:speedat_flutter/coummunty/communty_post_screen.dart';
 import 'package:speedat_flutter/main.dart';
 import 'package:speedat_flutter/meals/lunch_screen.dart';
 import 'package:speedat_flutter/meals/dinner_screen.dart';
@@ -25,6 +26,7 @@ class App extends StatelessWidget {
         '/mon': (context) => MonScreen(),
         '/my': (context) => MyScreen(),
         '/set': (context) => SetScreen(),
+        '/compost': (context) => CompostScreen(),
       },
     );
   }
@@ -92,10 +94,13 @@ class _BreakfastScreenState extends State<BreakfastScreen> {
                   Navigator.pushNamed(context, '/home'); // '/main'으로 이동
                 },
               ),
-
-              const ListTile(
-                leading: Icon(Icons.language),
-                title: Text('커뮤니티'),
+              ListTile(
+                leading: const Icon(Icons.language),
+                title: const Text('커뮤니티'),
+                onTap: () {
+                  Navigator.pop(context); // 드로어 닫기
+                  Navigator.pushNamed(context, '/compost'); // '/main'으로 이동
+                },
               ),
               Container(
                 color: Colors.yellow[100], // '시간표' 항목 배경색을 연한 노란색으로 설정
@@ -192,16 +197,19 @@ class _BreakfastScreenState extends State<BreakfastScreen> {
                       mealType: '조식',
                       menu:
                           '혼합잡곡밥 (5)\n된장찌개 (5.6)\n삼색김가루무침 (5.6)\n닭볶음탕 (5.6.13.15)\n배추김치 (9)\n초코수리취떡',
+                      imageAsset: '',
                     ),
                     MealCard(
                       mealType: '중식',
                       menu:
                           '혼합잡곡밥 (5)\n된장찌개 (5.6)\n삼색김가루무침 (5.6)\n닭볶음탕 (5.6.13.15)\n배추김치 (9)\n초코수리취떡',
+                      imageAsset: '',
                     ),
                     MealCard(
                       mealType: '석식',
                       menu:
                           '흰쌀밥 (5)\n된장찌개 (5.6)\n삼색김가루무침 (5.6)\n닭볶음탕 (5.6.13.15)\n배추김치 (9)\n초코수리취떡',
+                      imageAsset: '',
                     ),
                   ],
                 ),
@@ -347,7 +355,8 @@ class MealCard extends StatelessWidget {
   final String mealType;
   final String menu;
 
-  MealCard({required this.mealType, required this.menu});
+  MealCard(
+      {required this.mealType, required this.menu, required String imageAsset});
 
   @override
   Widget build(BuildContext context) {

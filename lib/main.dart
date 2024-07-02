@@ -7,6 +7,7 @@ import 'package:speedat_flutter/calendar/calendar.dart';
 import 'package:speedat_flutter/schedule/mon_screen.dart';
 import 'package:speedat_flutter/mypage_screen.dart';
 import 'package:speedat_flutter/setting_screen.dart';
+import 'package:speedat_flutter/coummunty/communty_post_screen.dart';
 
 void main() {
   initializeDateFormatting().then((_) => runApp(MyApp()));
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
         '/': (context) => SplashScreen(), // 앱 시작 시 SplashScreen을 표시
@@ -25,6 +27,7 @@ class MyApp extends StatelessWidget {
         '/mon': (context) => MonScreen(),
         '/my': (context) => MyScreen(),
         '/set': (context) => SetScreen(),
+        '/compost': (context) => CompostScreen(),
       },
     );
   }
@@ -90,9 +93,13 @@ class HomeScreen extends StatelessWidget {
                   },
                 ),
               ),
-              const ListTile(
-                leading: Icon(Icons.language),
-                title: Text('커뮤니티'),
+              ListTile(
+                leading: const Icon(Icons.language),
+                title: const Text('커뮤니티'),
+                onTap: () {
+                  Navigator.pop(context); // 드로어 닫기
+                  Navigator.pushNamed(context, '/compost'); // '/main'으로 이동
+                },
               ),
               ListTile(
                 leading: const Icon(Icons.restaurant_menu),

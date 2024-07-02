@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:speedat_flutter/coummunty/communty_post_screen.dart';
 import 'package:speedat_flutter/main.dart';
 import 'package:speedat_flutter/meals/breakfast_screen.dart';
 import 'package:speedat_flutter/mypage_screen.dart';
@@ -24,6 +25,7 @@ class App extends StatelessWidget {
         '/mon': (context) => MonScreen(),
         '/my': (context) => MyScreen(),
         '/set': (context) => SetScreen(),
+        '/compost': (context) => CompostScreen(),
       },
     );
   }
@@ -94,39 +96,37 @@ class _CalScreenState extends State<CalScreen> {
                 height: 140,
                 color: Colors.black12, // 상단 박스의 배경색을 투명으로 설정
               ),
-              Container(
-                child: ListTile(
-                  leading: const Icon(Icons.home_outlined),
-                  title: const Text('홈'),
-                  onTap: () {
-                    Navigator.pop(context); // 드로어 닫기
-                    Navigator.pushNamed(context, '/home'); // '/main'으로 이동
-                  },
-                ),
+              ListTile(
+                leading: const Icon(Icons.home_outlined),
+                title: const Text('홈'),
+                onTap: () {
+                  Navigator.pop(context); // 드로어 닫기
+                  Navigator.pushNamed(context, '/home'); // '/main'으로 이동
+                },
               ),
-              const ListTile(
-                leading: Icon(Icons.language),
-                title: Text('커뮤니티'),
+              ListTile(
+                leading: const Icon(Icons.language),
+                title: const Text('커뮤니티'),
+                onTap: () {
+                  Navigator.pop(context); // 드로어 닫기
+                  Navigator.pushNamed(context, '/compost'); // '/main'으로 이동
+                },
               ),
-              Container(
-                child: ListTile(
-                  leading: const Icon(Icons.restaurant_menu),
-                  title: const Text('급십실'),
-                  onTap: () {
-                    Navigator.pop(context); // 드로어 닫기
-                    Navigator.pushNamed(context, '/bob'); // '/main'으로 이동
-                  },
-                ),
+              ListTile(
+                leading: const Icon(Icons.restaurant_menu),
+                title: const Text('급십실'),
+                onTap: () {
+                  Navigator.pop(context); // 드로어 닫기
+                  Navigator.pushNamed(context, '/bob'); // '/main'으로 이동
+                },
               ),
-              Container(
-                child: ListTile(
-                  leading: const Icon(Icons.schedule),
-                  title: const Text('시간표'),
-                  onTap: () {
-                    Navigator.pop(context); // 드로어 닫기
-                    Navigator.pushNamed(context, '/mon'); // '/main'으로 이동
-                  },
-                ),
+              ListTile(
+                leading: const Icon(Icons.schedule),
+                title: const Text('시간표'),
+                onTap: () {
+                  Navigator.pop(context); // 드로어 닫기
+                  Navigator.pushNamed(context, '/mon'); // '/main'으로 이동
+                },
               ),
               Container(
                 color: Colors.yellow[100], // '시간표' 항목 배경색을 연한 노란색으로 설정
@@ -145,25 +145,21 @@ class _CalScreenState extends State<CalScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: Text('계정', style: TextStyle(color: Colors.grey)),
               ),
-              Container(
-                child: ListTile(
-                  leading: const Icon(Icons.person),
-                  title: const Text('마이페이지'),
-                  onTap: () {
-                    Navigator.pop(context); // 드로어 닫기
-                    Navigator.pushNamed(context, '/my'); // '/main'으로 이동
-                  },
-                ),
+              ListTile(
+                leading: const Icon(Icons.person),
+                title: const Text('마이페이지'),
+                onTap: () {
+                  Navigator.pop(context); // 드로어 닫기
+                  Navigator.pushNamed(context, '/my'); // '/main'으로 이동
+                },
               ),
-              Container(
-                child: ListTile(
-                  leading: const Icon(Icons.settings),
-                  title: const Text('설정'),
-                  onTap: () {
-                    Navigator.pop(context); // 드로어 닫기
-                    Navigator.pushNamed(context, '/set'); // '/main'으로 이동
-                  },
-                ),
+              ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text('설정'),
+                onTap: () {
+                  Navigator.pop(context); // 드로어 닫기
+                  Navigator.pushNamed(context, '/set'); // '/main'으로 이동
+                },
               ),
             ],
           ),
@@ -216,7 +212,7 @@ class _CalScreenState extends State<CalScreen> {
   Widget _buildEventList() {
     final events = _getEventsFromDay(_selectedDay);
     if (events.isEmpty) {
-      return Center(child: Text('메모 없음'));
+      return const Center(child: Text('메모 없음'));
     }
     return ListView(
       shrinkWrap: true,
@@ -238,11 +234,11 @@ class _CalScreenState extends State<CalScreen> {
         children: [
           TextField(
             controller: _eventController,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: '제목',
             ),
           ),
-          SizedBox(height: 8.0),
+          const SizedBox(height: 8.0),
           TextField(
             controller: _memoController,
             decoration: InputDecoration(

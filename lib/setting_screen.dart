@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:speedat_flutter/calendar/calendar.dart';
+import 'package:speedat_flutter/coummunty/communty_post_screen.dart';
 import 'package:speedat_flutter/main.dart';
 import 'package:speedat_flutter/meals/breakfast_screen.dart';
 import 'package:speedat_flutter/mypage_screen.dart';
@@ -24,6 +25,7 @@ class App extends StatelessWidget {
         '/mon': (context) => MonScreen(),
         '/my': (context) => MyScreen(),
         '/set': (context) => SetScreen(),
+        '/compost': (context) => CompostScreen(),
       },
     );
   }
@@ -44,7 +46,7 @@ class _SetScreenState extends State<SetScreen> {
         elevation: 0,
         title: InkWell(
           onTap: () {
-            Navigator.pushReplacementNamed(context, '/'); // 메인 화면으로 이동
+            Navigator.pushReplacementNamed(context, '/home'); // 메인 화면으로 이동
           },
           child: Row(
             children: [
@@ -91,9 +93,13 @@ class _SetScreenState extends State<SetScreen> {
                   Navigator.pushNamed(context, '/home'); // '/main'으로 이동
                 },
               ),
-              const ListTile(
-                leading: Icon(Icons.language),
-                title: Text('커뮤니티'),
+              ListTile(
+                leading: const Icon(Icons.language),
+                title: const Text('커뮤니티'),
+                onTap: () {
+                  Navigator.pop(context); // 드로어 닫기
+                  Navigator.pushNamed(context, '/compost'); // '/main'으로 이동
+                },
               ),
               ListTile(
                 leading: const Icon(Icons.restaurant_menu),
