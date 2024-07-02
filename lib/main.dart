@@ -217,7 +217,7 @@ class HomeScreen extends StatelessWidget {
                   child: Text(
                     '달력',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -229,7 +229,7 @@ class HomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   SizedBox(
-                    width: 425,
+                    width: 400,
                     child: MealCardWithCalendar(
                       mealType: '',
                       menu: '',
@@ -291,7 +291,7 @@ class HomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                         height: 150, // 높이를 동일하게 맞추기 위해 고정 높이 설정
-                        child: Card(
+                        child: const Card(
                           child: Column(
                             mainAxisAlignment:
                                 MainAxisAlignment.center, // 내용 중앙 정렬
@@ -316,7 +316,7 @@ class HomeScreen extends StatelessWidget {
                 color: Colors.grey[300],
               ),
 
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(left: 15.0, top: 20.0),
                 child: Align(
                   alignment: Alignment.centerLeft,
@@ -330,7 +330,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
 
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(left: 15.0, top: 2.5),
                 child: Align(
                   alignment: Alignment.centerLeft,
@@ -365,7 +365,7 @@ class HomeScreen extends StatelessWidget {
                   );
                 }),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: ElevatedButton(
@@ -396,7 +396,7 @@ class HomeScreen extends StatelessWidget {
                   onPressed: () {
                     // TODO: 커뮤니티 바로가기 기능 구현
                   },
-                  child: Text(
+                  child: const Text(
                     '커뮤니티 바로가기',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
@@ -413,7 +413,7 @@ class HomeScreen extends StatelessWidget {
                 color: Colors.grey[300],
               ),
 
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(left: 15, top: 10),
                 child: Align(
                   alignment: Alignment.centerLeft,
@@ -428,7 +428,7 @@ class HomeScreen extends StatelessWidget {
               ),
 
               // 여러 개의 MealCard 예시 (Horizontal Scrolling)
-              Container(
+              SizedBox(
                 height: 350, // 높이 설정
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -457,7 +457,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // 회색 구분선
               Container(
@@ -465,7 +465,7 @@ class HomeScreen extends StatelessWidget {
                 color: Colors.grey[300],
               ),
 
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(left: 15, top: 10),
                 child: Align(
                   alignment: Alignment.centerLeft,
@@ -479,7 +479,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
 
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(left: 15.0, top: 2.5),
                 child: Align(
                   alignment: Alignment.centerLeft,
@@ -517,19 +517,19 @@ class HomeScreen extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   '1교시 : 로봇 디자인',
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                SizedBox(height: 8),
-                                Text(
+                                const SizedBox(height: 8),
+                                const Text(
                                   '다음 교시: 로봇디자인',
                                   style: TextStyle(fontSize: 16),
                                 ),
-                                SizedBox(height: 8),
+                                const SizedBox(height: 8),
                                 ElevatedButton(
                                   style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty
@@ -554,11 +554,11 @@ class HomeScreen extends StatelessWidget {
                                     }),
                                     minimumSize:
                                         MaterialStateProperty.all<Size>(
-                                      Size(425, 50), // 버튼 최소 크기 설정
+                                      const Size(425, 50), // 버튼 최소 크기 설정
                                     ),
                                     padding: MaterialStateProperty.all<
                                         EdgeInsetsGeometry>(
-                                      EdgeInsets.symmetric(
+                                      const EdgeInsets.symmetric(
                                           horizontal: 20.0), // 내부 여백 설정
                                     ),
                                   ),
@@ -566,7 +566,7 @@ class HomeScreen extends StatelessWidget {
                                     Navigator.pushReplacementNamed(
                                         context, '/mon');
                                   },
-                                  child: Text(
+                                  child: const Text(
                                     '시간표 바로가기',
                                     style: TextStyle(
                                         fontSize: 16,
@@ -674,6 +674,7 @@ class _MealCardWithCalendarState extends State<MealCardWithCalendar> {
   }
 }
 
+// ignore: non_constant_identifier_names
 DateFormat(String s) {}
 
 class LogoWidget extends StatelessWidget {
@@ -757,19 +758,19 @@ class CommunityCard extends StatelessWidget {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Row(
               children: [
-                Icon(Icons.access_time),
-                SizedBox(width: 5),
+                const Icon(Icons.access_time),
+                const SizedBox(width: 5),
                 Text(time),
-                SizedBox(width: 20),
-                Icon(Icons.remove_red_eye),
-                SizedBox(width: 5),
+                const SizedBox(width: 20),
+                const Icon(Icons.remove_red_eye),
+                const SizedBox(width: 5),
                 Text(views),
-                SizedBox(width: 20),
-                Icon(Icons.thumb_up),
-                SizedBox(width: 5),
+                const SizedBox(width: 20),
+                const Icon(Icons.thumb_up),
+                const SizedBox(width: 5),
                 Text(likes),
               ],
             ),
@@ -812,7 +813,7 @@ class MealCard extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               mealType,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
@@ -822,10 +823,10 @@ class MealCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
               menu,
-              style: TextStyle(fontSize: 14),
+              style: const TextStyle(fontSize: 14),
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 45.0, vertical: 8.0),
@@ -847,16 +848,16 @@ class MealCard extends StatelessWidget {
                   return Colors.white; // 활성 상태 글자색
                 }),
                 minimumSize: MaterialStateProperty.all<Size>(
-                  Size(425, 50), // 버튼 최소 크기 설정
+                  const Size(425, 50), // 버튼 최소 크기 설정
                 ),
                 padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                  EdgeInsets.symmetric(horizontal: 20.0), // 내부 여백 설정
+                  const EdgeInsets.symmetric(horizontal: 20.0), // 내부 여백 설정
                 ),
               ),
               onPressed: () {
                 Navigator.pushReplacementNamed(context, '/bob');
               },
-              child: Text(
+              child: const Text(
                 '급식 바로가기',
                 style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
               ),
