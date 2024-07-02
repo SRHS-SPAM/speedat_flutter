@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:speedat_flutter/coummunty/community_bord.dart';
 import 'community_best.dart';
 
-class Community extends StatefulWidget {
+class CommunityScreen extends StatefulWidget {
   @override
-  _CommunityState createState() => _CommunityState();
+  _CommunityScreenState createState() => _CommunityScreenState();
 }
 
-class _CommunityState extends State<Community> {
+class _CommunityScreenState extends State<CommunityScreen> {
   String selectedTab = '커뮤니티 홈';
 
   void onTabSelected(String title) {

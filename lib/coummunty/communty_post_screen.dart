@@ -6,6 +6,7 @@ import 'package:speedat_flutter/schedule/mon_screen.dart';
 import 'package:speedat_flutter/setting_screen.dart';
 import 'package:speedat_flutter/splash_screen.dart';
 import 'package:speedat_flutter/mypage_screen.dart';
+import 'package:speedat_flutter/coummunty/community_screen.dart';
 
 void main() {
   runApp(App());
@@ -24,7 +25,7 @@ class App extends StatelessWidget {
         '/mon': (context) => MonScreen(),
         '/my': (context) => MyScreen(),
         '/set': (context) => SetScreen(),
-        '/compost': (context) => CompostScreen(),
+        '/com': (context) => CommunityScreen(),
       },
     );
   }
@@ -168,7 +169,7 @@ class _CompostScreenState extends State<CompostScreen> {
                     icon: Icon(Icons.arrow_back, color: Colors.black),
                     onPressed: () {
                       Navigator.pushNamed(
-                          context, '/home'); // community_screen.dart로 이동
+                          context, '/com'); // community_screen.dart로 이동
                     },
                   ),
                   const Padding(
@@ -238,7 +239,7 @@ class _CompostScreenState extends State<CompostScreen> {
                   style: TextStyle(fontSize: 16),
                 ),
               ),
-              const Divider(), // 댓글 상단 구분선 추가
+              Divider(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
@@ -254,7 +255,7 @@ class _CompostScreenState extends State<CompostScreen> {
                       children: [
                         CommentWidget(
                           username: '커피빌런',
-                          comment: '그래서 뭔 동물임?',
+                          comment: '그래서 누구임?',
                           timestamp: '2024년 05월 23일',
                         ),
                         CommentWidget(
@@ -266,9 +267,10 @@ class _CompostScreenState extends State<CompostScreen> {
                         ),
                         CommentWidget(
                           username: '커피빌런',
-                          comment: '안요한 그래서 뭔 동물임?',
+                          comment: ' 그래서 누구임?',
                           timestamp: '2024년 05월 23일',
                           isReply: true,
+                          mentionedUsername: '안요한',
                         ),
                         CommentWidget(
                           username: '카페인이좋은프론트',
@@ -278,6 +280,11 @@ class _CompostScreenState extends State<CompostScreen> {
                         CommentWidget(
                           username: '캡틴잭',
                           comment: '배고프다',
+                          timestamp: '2024년 05월 23일',
+                        ),
+                        CommentWidget(
+                          username: '잭스충',
+                          comment: '섹스',
                           timestamp: '2024년 05월 23일',
                         ),
                       ],
@@ -299,6 +306,7 @@ class CommentWidget extends StatelessWidget {
   final String timestamp;
   final bool isAuthor;
   final bool isReply;
+  final String? mentionedUsername;
 
   const CommentWidget({
     Key? key,
@@ -307,6 +315,7 @@ class CommentWidget extends StatelessWidget {
     required this.timestamp,
     this.isAuthor = false,
     this.isReply = false,
+    this.mentionedUsername,
   }) : super(key: key);
 
   @override
@@ -338,7 +347,9 @@ class CommentWidget extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
-                            color: isReply ? Colors.blue : Colors.black,
+                            color: isAuthor
+                                ? const Color.fromARGB(255, 0, 0, 0)
+                                : Colors.black,
                           ),
                         ),
                         if (isAuthor)
@@ -361,9 +372,23 @@ class CommentWidget extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 2),
-                    Text(
-                      comment,
-                      style: const TextStyle(fontSize: 14),
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          if (mentionedUsername != null)
+                            TextSpan(
+                              text: '$mentionedUsername ',
+                              style: const TextStyle(
+                                color: Colors.orange,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          TextSpan(
+                            text: comment,
+                            style: const TextStyle(color: Colors.black),
+                          ),
+                        ],
+                      ),
                     ),
                     const SizedBox(height: 2),
                     Text(
@@ -375,11 +400,7 @@ class CommentWidget extends StatelessWidget {
               ),
             ],
           ),
-          if (!isReply)
-            const Divider(
-              color: Colors.grey,
-              height: 20,
-            ),
+          Divider(),
         ],
       ),
     );
