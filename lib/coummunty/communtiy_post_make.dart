@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:speedat_flutter/calendar/calendar.dart';
+import 'package:speedat_flutter/coummunty/community_best.dart';
+import 'package:speedat_flutter/coummunty/community_bord.dart';
+import 'package:speedat_flutter/coummunty/community_screen.dart';
 import 'package:speedat_flutter/coummunty/communty_post_screen.dart';
 import 'package:speedat_flutter/main.dart';
 import 'package:speedat_flutter/meals/breakfast_screen.dart';
@@ -16,27 +19,32 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ResScreen(),
+      home: CummunitypostmakeScreen(),
       routes: {
-        '/': (context) => SplashScreen(), // 앱 시작 시 SplashScreen을 표시
+        '/': (context) => SplashScreen(),
         '/home': (context) => HomeScreen(),
         '/bob': (context) => BreakfastScreen(),
         '/cal': (context) => CalScreen(),
         '/mon': (context) => MonScreen(),
         '/my': (context) => MyScreen(),
         '/set': (context) => SetScreen(),
-        '/compost': (context) => CompostScreen(),
+        '/post': (context) => CompostScreen(),
+        '/com': (context) => CommunityScreen(),
+        '/communitybest': (context) => CommunitybestScreen(),
+        '/communitybord': (context) => CommunitybordScreen(),
+        '/communitymake': (context) => CummunitypostmakeScreen(),
       },
     );
   }
 }
 
-class ResScreen extends StatefulWidget {
+class CummunitypostmakeScreen extends StatefulWidget {
   @override
-  _ResScreenState createState() => _ResScreenState();
+  _CummunitypostmakeScreenState createState() =>
+      _CummunitypostmakeScreenState();
 }
 
-class _ResScreenState extends State<ResScreen> {
+class _CummunitypostmakeScreenState extends State<CummunitypostmakeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,17 +106,18 @@ class _ResScreenState extends State<ResScreen> {
                 title: const Text('커뮤니티'),
                 onTap: () {
                   Navigator.pop(context); // 드로어 닫기
-                  Navigator.pushNamed(context, '/compost'); // '/main'으로 이동
+                  Navigator.pushNamed(context, '/com'); // '/main'으로 이동
                 },
               ),
               ListTile(
                 leading: const Icon(Icons.restaurant_menu),
-                title: const Text('급십실'),
+                title: const Text('급식표'),
                 onTap: () {
                   Navigator.pop(context); // 드로어 닫기
                   Navigator.pushNamed(context, '/bob'); // '/main'으로 이동
                 },
               ),
+
               ListTile(
                 leading: const Icon(Icons.schedule),
                 title: const Text('시간표'),
@@ -153,45 +162,125 @@ class _ResScreenState extends State<ResScreen> {
           ),
         ),
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              // 회색 구분선 (AppBar 아래에 추가)
-              Container(
-                height: 2,
-                color: Colors.grey[200],
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '글 작성',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 16),
+            DropdownButtonFormField<String>(
+              hint: Text('게시판 선택'),
+              items: <String>['게시판 1', '게시판 2', '게시판 3'].map((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+              onChanged: (String? newValue) {
+                // Handle change
+              },
+            ),
+            SizedBox(height: 16),
+            TextField(
+              decoration: InputDecoration(
+                hintText: '제목',
+                border: OutlineInputBorder(),
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 20.0, top: 20.0),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    '재설정',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+            ),
+            SizedBox(height: 16),
+            Row(
+              children: [
+                IconButton(
+                  icon: Icon(Icons.image),
+                  onPressed: () {
+                    // Handle image selection
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.link),
+                  onPressed: () {
+                    // Handle link addition
+                  },
+                ),
+              ],
+            ),
+            SizedBox(height: 16),
+            Expanded(
+              child: TextField(
+                maxLines: null,
+                expands: true,
+                decoration: InputDecoration(
+                  hintText: '글 내용 작성',
+                  border: OutlineInputBorder(),
                 ),
               ),
-            ],
-          ),
+            ),
+            SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/com');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.grey,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.zero,
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                    minimumSize: Size(150, 20),
+                    textStyle: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                  child: Text(
+                    '취소',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/post');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.amber,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.zero,
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                    minimumSize: Size(150, 20),
+                    textStyle: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                  child: Text(
+                    '등록',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
+              ],
+            )
+          ],
         ),
       ),
     );
   }
+}
 
-  Widget createCell(String content) {
-    return Container(
-      padding: const EdgeInsets.all(8.0),
-      child: Text(
-        content,
-        style: const TextStyle(fontSize: 16.0),
-        textAlign: TextAlign.center,
-      ),
-    );
-  }
+Widget createCell(String content) {
+  return Container(
+    padding: const EdgeInsets.all(8.0),
+    child: Text(
+      content,
+      style: const TextStyle(fontSize: 16.0),
+      textAlign: TextAlign.center,
+    ),
+  );
 }
 
 class LogoWidget extends StatelessWidget {

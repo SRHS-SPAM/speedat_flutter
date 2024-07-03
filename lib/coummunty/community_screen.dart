@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:speedat_flutter/calendar/calendar.dart';
 import 'package:speedat_flutter/coummunty/community_best.dart';
+import 'package:speedat_flutter/coummunty/community_bord.dart';
+import 'package:speedat_flutter/coummunty/communtiy_post_make.dart';
 import 'package:speedat_flutter/coummunty/communty_post_screen.dart';
 import 'package:speedat_flutter/main.dart';
 import 'package:speedat_flutter/meals/breakfast_screen.dart';
@@ -29,6 +31,8 @@ class App extends StatelessWidget {
         '/post': (context) => CompostScreen(),
         '/com': (context) => CommunityScreen(),
         '/communitybest': (context) => CommunitybestScreen(),
+        '/communitybord': (context) => CommunitybordScreen(),
+        '/communitymake': (context) => CummunitypostmakeScreen(),
       },
     );
   }
@@ -93,58 +97,59 @@ class _CommunityScreenState extends State<CommunityScreen> {
       ),
       endDrawer: Drawer(
         child: Container(
-          color: Colors.white,
+          color: Colors.white, // Drawer의 전체 배경색을 흰색으로 설정
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Container(
                 height: 140,
-                color: Colors.black12,
+                color: Colors.black12, // 상단 박스의 배경색을 투명으로 설정
               ),
               ListTile(
                 leading: const Icon(Icons.home_outlined),
                 title: const Text('홈'),
                 onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/home');
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.language),
-                title: const Text('커뮤니티'),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/com');
+                  Navigator.pop(context); // 드로어 닫기
+                  Navigator.pushNamed(context, '/home'); // '/main'으로 이동
                 },
               ),
               Container(
-                color: Colors.yellow[100],
+                color: Colors.yellow[100], // '시간표' 항목 배경색을 연한 노란색으로 설정
                 child: ListTile(
-                  leading: const Icon(Icons.restaurant_menu),
-                  title: const Text('급식실'),
+                  leading: const Icon(Icons.language),
+                  title: const Text('커뮤니티'),
                   onTap: () {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, '/bob');
+                    Navigator.pop(context); // 드로어 닫기
+                    Navigator.pushNamed(context, '/com'); // '/main'으로 이동
                   },
                 ),
               ),
               ListTile(
+                leading: const Icon(Icons.restaurant_menu),
+                title: const Text('급식표'),
+                onTap: () {
+                  Navigator.pop(context); // 드로어 닫기
+                  Navigator.pushNamed(context, '/bob'); // '/main'으로 이동
+                },
+              ),
+
+              ListTile(
                 leading: const Icon(Icons.schedule),
                 title: const Text('시간표'),
                 onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/mon');
+                  Navigator.pop(context); // 드로어 닫기
+                  Navigator.pushNamed(context, '/mon'); // '/main'으로 이동
                 },
               ),
               ListTile(
                 leading: const Icon(Icons.calendar_today),
                 title: const Text('달력'),
                 onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/cal');
+                  Navigator.pop(context); // 드로어 닫기
+                  Navigator.pushNamed(context, '/cal'); // '/main'으로 이동
                 },
               ),
-              const Divider(),
+              const Divider(), // 구분선 추가
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: Text('계정', style: TextStyle(color: Colors.grey)),
@@ -153,16 +158,16 @@ class _CommunityScreenState extends State<CommunityScreen> {
                 leading: const Icon(Icons.person),
                 title: const Text('마이페이지'),
                 onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/my');
+                  Navigator.pop(context); // 드로어 닫기
+                  Navigator.pushNamed(context, '/my'); // '/main'으로 이동
                 },
               ),
               ListTile(
                 leading: const Icon(Icons.settings),
                 title: const Text('설정'),
                 onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/set');
+                  Navigator.pop(context); // 드로어 닫기
+                  Navigator.pushNamed(context, '/set'); // '/main'으로 이동
                 },
               ),
             ],
@@ -215,7 +220,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                Navigator.pushNamed(context, '/post');
+                                Navigator.pushNamed(context, '/communitymake');
                               },
                               child: Container(
                                 width: 25, // 아이콘을 포함한 원의 너비

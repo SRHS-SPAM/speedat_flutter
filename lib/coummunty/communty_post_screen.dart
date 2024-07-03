@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:speedat_flutter/calendar/calendar.dart';
 import 'package:speedat_flutter/coummunty/community_best.dart';
+import 'package:speedat_flutter/coummunty/community_bord.dart';
 import 'package:speedat_flutter/coummunty/community_screen.dart';
 import 'package:speedat_flutter/main.dart';
 import 'package:speedat_flutter/meals/breakfast_screen.dart';
@@ -29,6 +30,7 @@ class App extends StatelessWidget {
         '/post': (context) => CompostScreen(),
         '/com': (context) => CommunityScreen(),
         '/communitybest': (context) => CommunitybestScreen(),
+        '/communitybord': (context) => CommunitybordScreen(),
       },
     );
   }
@@ -115,18 +117,19 @@ class _CompostScreenState extends State<CompostScreen> {
                   title: const Text('커뮤니티'),
                   onTap: () {
                     Navigator.pop(context); // 드로어 닫기
-                    Navigator.pushNamed(context, '/compost'); // '/main'으로 이동
+                    Navigator.pushNamed(context, '/com'); // '/main'으로 이동
                   },
                 ),
               ),
               ListTile(
                 leading: const Icon(Icons.restaurant_menu),
-                title: const Text('급십실'),
+                title: const Text('급식표'),
                 onTap: () {
                   Navigator.pop(context); // 드로어 닫기
                   Navigator.pushNamed(context, '/bob'); // '/main'으로 이동
                 },
               ),
+
               ListTile(
                 leading: const Icon(Icons.schedule),
                 title: const Text('시간표'),

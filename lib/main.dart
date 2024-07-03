@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:speedat_flutter/coummunty/community_best.dart';
+import 'package:speedat_flutter/coummunty/community_bord.dart';
+import 'package:speedat_flutter/coummunty/communtiy_post_make.dart';
 import 'package:speedat_flutter/coummunty/communty_post_screen.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'splash_screen.dart'; // splash_screen.dart 파일을 임포트
@@ -33,12 +35,26 @@ class MyApp extends StatelessWidget {
         '/post': (context) => CompostScreen(),
         '/com': (context) => CommunityScreen(),
         '/communitybest': (context) => CommunitybestScreen(),
+        '/communitybord': (context) => CommunitybordScreen(),
+        '/communitymake': (context) => CummunitypostmakeScreen(),
       },
     );
   }
 }
 
 class HomeScreen extends StatelessWidget {
+  final List<Map<String, dynamic>> posts = List.generate(3, (index) {
+    return {
+      'title': '송하영은 누굴까요?',
+      'description': '프로미스나인의 초 귀염둥이...',
+      'image': 'assets/images/cat_05.png',
+      'time': '30분 전',
+      'views': 56,
+      'comments': 12,
+      'likes': 999,
+    };
+  });
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -249,135 +265,6 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              // 새로 추가된 버튼과 일정 카드
-              Row(
-                children: [
-                  // 버튼 카드
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SizedBox(
-                        height: 150, // 높이를 동일하게 맞추기 위해 고정 높이 설정
-                        child: Card(
-                          child: Column(
-                            mainAxisAlignment:
-                                MainAxisAlignment.center, // 내용 중앙 정렬
-                            children: <Widget>[
-                              const ListTile(
-                                leading: Icon(Icons.event),
-                                title: Text('달력 바로가기'),
-                              ),
-                              ButtonBar(
-                                alignment:
-                                    MainAxisAlignment.end, // 버튼을 오른쪽 하단으로 이동
-                                children: <Widget>[
-                                  TextButton(
-                                    style: TextButton.styleFrom(
-                                      minimumSize: Size(100, 40), // 버튼 크기 설정
-                                      backgroundColor: const Color.fromARGB(
-                                          255, 253, 176, 10), // 버튼 배경색 노란색으로 설정
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 16.0),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.pushReplacementNamed(
-                                          context, '/cal');
-                                    },
-                                    child: const Text(
-                                      '바로가기',
-                                      style: TextStyle(
-                                          color: Colors.white), // 버튼 텍스트 색상 설정
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  // 일정 카드
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        height: 150, // 높이를 동일하게 맞추기 위해 고정 높이 설정
-                        child: const Card(
-                          child: Column(
-                            mainAxisAlignment:
-                                MainAxisAlignment.center, // 내용 중앙 정렬
-                            children: <Widget>[
-                              ListTile(
-                                leading: Icon(Icons.calendar_today),
-                                title: Text('오늘의 일정'),
-                                subtitle: Text('세부 일정 내용'),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              // 식사 정보 테이블
-              Container(
-                height: 1,
-                color: Colors.grey[300],
-              ),
-
-              const Padding(
-                padding: EdgeInsets.only(left: 15.0, top: 20.0),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    '커뮤니티',
-                    style: TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-
-              const Padding(
-                padding: EdgeInsets.only(left: 15.0, top: 2.5),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    '최신글 부터 인기글 그리고 각 과의 게시물을 살펴보고 공유해보세요!',
-                    style: TextStyle(
-                      color: Colors.black54,
-                      fontSize: 12.5,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-
-              // 추가된 카드
-              Column(
-                children: List.generate(3, (index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5.0),
-                    child: Container(
-                      width: 425,
-                      height: 110,
-                      child: CommunityCard(
-                        title: '커뮤니티 글 ${index + 1}',
-                        description: '여기는 커뮤니티 글 ${index + 1}에 대한 설명입니다.',
-                        time: '${30 - index}분 전',
-                        views: '${50 + index}',
-                        likes: '${10 - index}',
-                        imageAsset: 'assets/images/communty.png',
-                      ),
-                    ),
-                  );
-                }),
-              ),
-              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: ElevatedButton(
@@ -406,85 +293,28 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
+                    Navigator.pushReplacementNamed(context, '/cal');
                     // TODO: 커뮤니티 바로가기 기능 구현
                   },
                   child: const Text(
-                    '커뮤니티 바로가기',
+                    '달력 바로가기',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
-
-              SizedBox(height: 10),
-
-              // 커뮤니티 바로가기 버튼
-
-              // 회색 구분선
+              SizedBox(height: 20),
               Container(
                 height: 1,
                 color: Colors.grey[300],
               ),
-
               const Padding(
-                padding: EdgeInsets.only(left: 15, top: 10),
+                padding: EdgeInsets.only(left: 15.0, top: 20.0),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    '급식',
+                    '커뮤니티',
                     style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-
-              // 여러 개의 MealCard 예시 (Horizontal Scrolling)
-              SizedBox(
-                height: 350, // 높이 설정
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 3,
-                  itemBuilder: (context, index) {
-                    // 각 카드에 대한 제목 설정
-                    String mealTitle = index == 0
-                        ? '조식'
-                        : index == 1
-                            ? '중식'
-                            : '석식'; // 예시 제목, 실제로 원하는 제목으로 수정 가능
-
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 5.0, horizontal: 10.0),
-                      child: Container(
-                        width: 200, // 너비 설정
-                        child: MealCard(
-                          mealType: mealTitle, // 수정된 제목 사용
-                          menu: '밥, 김치, 불고기', // 동일한 메뉴
-                          imageAsset: 'assets/images/first.png', // 이미지 경로 추가
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-
-              const SizedBox(height: 20),
-
-              // 회색 구분선
-              Container(
-                height: 1,
-                color: Colors.grey[300],
-              ),
-
-              const Padding(
-                padding: EdgeInsets.only(left: 15, top: 10),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    '시간표',
-                    style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 26,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -496,7 +326,7 @@ class HomeScreen extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    '오늘의 시간표와 과목을 확인해보세요!',
+                    '최신글 부터 인기글 그리고 각 과의 게시물을 살펴보고 공유해보세요!',
                     style: TextStyle(
                       color: Colors.black54,
                       fontSize: 12.5,
@@ -505,97 +335,306 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-
-              // 추가된 카드
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  width: double.infinity,
-                  child: Card(
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Image.asset(
-                            'assets/images/time.png',
-                            height: 150,
-                            fit: BoxFit.cover,
-                          ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      for (var post in posts)
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, '/post');
+                          },
+                          child: PostCard(post: post),
                         ),
-                        Expanded(
-                          flex: 3,
-                          child: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  '1교시 : 로봇 디자인',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-                                const Text(
-                                  '다음 교시: 로봇디자인',
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                                const SizedBox(height: 8),
-                                ElevatedButton(
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty
-                                        .resolveWith<Color>(
-                                      (Set<MaterialState> states) {
-                                        if (states
-                                            .contains(MaterialState.disabled)) {
-                                          return Colors.grey; // 비활성 상태 배경색
-                                        }
-                                        return Colors.orange; // 활성 상태 배경색
-                                      },
-                                    ),
-                                    foregroundColor:
-                                        MaterialStateProperty.resolveWith<
-                                            Color>((Set<MaterialState> states) {
-                                      if (states
-                                          .contains(MaterialState.disabled)) {
-                                        return Colors.white
-                                            .withOpacity(0.5); // 비활성 상태 글자색
-                                      }
-                                      return Colors.white; // 활성 상태 글자색
-                                    }),
-                                    minimumSize:
-                                        MaterialStateProperty.all<Size>(
-                                      const Size(425, 50), // 버튼 최소 크기 설정
-                                    ),
-                                    padding: MaterialStateProperty.all<
-                                        EdgeInsetsGeometry>(
-                                      const EdgeInsets.symmetric(
-                                          horizontal: 20.0), // 내부 여백 설정
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.pushReplacementNamed(
-                                        context, '/mon');
-                                  },
-                                  child: const Text(
-                                    '시간표 바로가기',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                      SizedBox(
+                          height: 32), // PostCard 아래의 간격 조정 (원하는 크기로 변경 가능)
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.resolveWith<Color>(
+                          (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.disabled)) {
+                              return Colors.grey;
+                            }
+                            return Colors.orange;
+                          },
                         ),
-                      ],
+                        foregroundColor:
+                            MaterialStateProperty.resolveWith<Color>(
+                          (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.disabled)) {
+                              return Colors.white.withOpacity(0.5);
+                            }
+                            return Colors.white;
+                          },
+                        ),
+                        minimumSize: MaterialStateProperty.all<Size>(
+                          Size(425, 50),
+                        ),
+                        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                          EdgeInsets.symmetric(horizontal: 20.0),
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(context, '/com');
+                        // TODO: 커뮤니티 바로가기 기능 구현
+                      },
+                      child: const Text(
+                        '커뮤니티 바로가기',
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
-                ),
+
+                  SizedBox(height: 10),
+
+                  // 커뮤니티 바로가기 버튼
+
+                  // 회색 구분선
+                  Container(
+                    height: 1,
+                    color: Colors.grey[300],
+                  ),
+
+                  const Padding(
+                    padding: EdgeInsets.only(left: 15, top: 10),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '급식',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  // 여러 개의 MealCard 예시 (Horizontal Scrolling)
+                  SizedBox(
+                    height: 350, // 높이 설정
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 3,
+                      itemBuilder: (context, index) {
+                        // 각 카드에 대한 제목 설정
+                        String mealTitle = index == 0
+                            ? '조식'
+                            : index == 1
+                                ? '중식'
+                                : '석식'; // 예시 제목, 실제로 원하는 제목으로 수정 가능
+
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 5.0, horizontal: 10.0),
+                          child: Container(
+                            width: 200, // 너비 설정
+                            child: MealCard(
+                              mealType: mealTitle, // 수정된 제목 사용
+                              menu: '밥, 김치, 불고기', // 동일한 메뉴
+                              imageAsset:
+                                  'assets/images/first.png', // 이미지 경로 추가
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  // 회색 구분선
+                  Container(
+                    height: 1,
+                    color: Colors.grey[300],
+                  ),
+
+                  const Padding(
+                    padding: EdgeInsets.only(left: 15, top: 10),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '시간표',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  const Padding(
+                    padding: EdgeInsets.only(left: 15.0, top: 2.5),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '오늘의 시간표와 과목을 확인해보세요!',
+                        style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: 12.5,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  // 추가된 카드
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: double.infinity,
+                      child: Card(
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: Image.asset(
+                                'assets/images/time.png',
+                                height: 150,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      '1교시 : 로봇 디자인',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    const Text(
+                                      '다음 교시: 로봇디자인',
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    ElevatedButton(
+                                      style: ButtonStyle(
+                                        backgroundColor: MaterialStateProperty
+                                            .resolveWith<Color>(
+                                          (Set<MaterialState> states) {
+                                            if (states.contains(
+                                                MaterialState.disabled)) {
+                                              return Colors.grey; // 비활성 상태 배경색
+                                            }
+                                            return Colors.orange; // 활성 상태 배경색
+                                          },
+                                        ),
+                                        foregroundColor: MaterialStateProperty
+                                            .resolveWith<Color>(
+                                                (Set<MaterialState> states) {
+                                          if (states.contains(
+                                              MaterialState.disabled)) {
+                                            return Colors.white
+                                                .withOpacity(0.5); // 비활성 상태 글자색
+                                          }
+                                          return Colors.white; // 활성 상태 글자색
+                                        }),
+                                        minimumSize:
+                                            MaterialStateProperty.all<Size>(
+                                          const Size(425, 50), // 버튼 최소 크기 설정
+                                        ),
+                                        padding: MaterialStateProperty.all<
+                                            EdgeInsetsGeometry>(
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 20.0), // 내부 여백 설정
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.pushReplacementNamed(
+                                            context, '/mon');
+                                      },
+                                      child: const Text(
+                                        '시간표 바로가기',
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class PostCard extends StatelessWidget {
+  final Map<String, dynamic> post;
+
+  PostCard({required this.post});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.symmetric(vertical: 8),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Row(
+          children: [
+            // 이미지 추가
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.asset(
+                'assets/images/cat_05.png', // 이미지 경로를 실제 경로로 바꾸세요
+                width: 80,
+                height: 80,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    post['title'],
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 8),
+                  Text(post['description']),
+                  SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Text(post['time']),
+                      Spacer(),
+                      Icon(Icons.remove_red_eye, size: 16),
+                      SizedBox(width: 4),
+                      Text(post['views'].toString()),
+                      SizedBox(width: 16),
+                      Icon(Icons.thumb_up, size: 16), // 좋아요 아이콘으로 변경
+                      SizedBox(width: 4),
+                      Text(post['likes'].toString()), // 좋아요 수
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

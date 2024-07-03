@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:speedat_flutter/calendar/calendar.dart';
+import 'package:speedat_flutter/coummunty/community_screen.dart';
 import 'package:speedat_flutter/coummunty/communty_post_screen.dart';
 import 'package:speedat_flutter/main.dart';
 import 'package:speedat_flutter/meals/breakfast_screen.dart';
@@ -29,6 +30,7 @@ class App extends StatelessWidget {
         '/my': (context) => MyScreen(),
         '/set': (context) => SetScreen(),
         '/compost': (context) => CompostScreen(),
+        '/com': (context) => CommunityScreen(),
       },
     );
   }
@@ -101,7 +103,7 @@ class _MonScreenState extends State<MonScreen> {
                 title: const Text('커뮤니티'),
                 onTap: () {
                   Navigator.pop(context); // 드로어 닫기
-                  Navigator.pushNamed(context, '/compost'); // '/main'으로 이동
+                  Navigator.pushNamed(context, '/com'); // '/main'으로 이동
                 },
               ),
               ListTile(

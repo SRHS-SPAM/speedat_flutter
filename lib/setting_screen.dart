@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:speedat_flutter/calendar/calendar.dart';
+import 'package:speedat_flutter/coummunty/community_best.dart';
+import 'package:speedat_flutter/coummunty/community_bord.dart';
+import 'package:speedat_flutter/coummunty/community_screen.dart';
 import 'package:speedat_flutter/coummunty/communty_post_screen.dart';
 import 'package:speedat_flutter/main.dart';
 import 'package:speedat_flutter/meals/breakfast_screen.dart';
 import 'package:speedat_flutter/mypage_screen.dart';
-import 'package:speedat_flutter/resetting_screen.dart';
 import 'package:speedat_flutter/schedule/mon_screen.dart';
 import 'package:speedat_flutter/splash_screen.dart';
 
@@ -18,14 +20,17 @@ class App extends StatelessWidget {
     return MaterialApp(
       home: SetScreen(),
       routes: {
-        '/': (context) => SplashScreen(), // 앱 시작 시 SplashScreen을 표시
+        '/': (context) => SplashScreen(),
         '/home': (context) => HomeScreen(),
         '/bob': (context) => BreakfastScreen(),
         '/cal': (context) => CalScreen(),
         '/mon': (context) => MonScreen(),
         '/my': (context) => MyScreen(),
         '/set': (context) => SetScreen(),
-        '/compost': (context) => CompostScreen(),
+        '/post': (context) => CompostScreen(),
+        '/com': (context) => CommunityScreen(),
+        '/communitybest': (context) => CommunitybestScreen(),
+        '/communitybord': (context) => CommunitybordScreen(),
       },
     );
   }
@@ -37,6 +42,20 @@ class SetScreen extends StatefulWidget {
 }
 
 class _SetScreenState extends State<SetScreen> {
+  final List<Map<String, dynamic>> posts = List.generate(10, (index) {
+    return {
+      'title': '송하영은 누굴까요?',
+      'description': '프로미스나인의 초 귀염둥이...',
+      'image': 'assets/images/cat_05.png',
+      'time': '30분 전',
+      'views': 56,
+      'comments': 12,
+      'likes': 999,
+    };
+  });
+
+  bool _isPasswordVisible = false; // State to manage password visibility
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,7 +117,7 @@ class _SetScreenState extends State<SetScreen> {
                 title: const Text('커뮤니티'),
                 onTap: () {
                   Navigator.pop(context); // 드로어 닫기
-                  Navigator.pushNamed(context, '/compost'); // '/main'으로 이동
+                  Navigator.pushNamed(context, '/com'); // '/main'으로 이동
                 },
               ),
               ListTile(
@@ -175,33 +194,136 @@ class _SetScreenState extends State<SetScreen> {
                   ),
                 ),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ResScreen()),
-                  );
-                },
-                child: const Text(
-                  '재설정',
-                  style: TextStyle(fontSize: 20, color: Colors.black),
+              // 삽입된 내용 시작
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Colors.grey,
+                              radius: 30,
+                            ),
+                            const SizedBox(width: 10),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text(
+                                  '김스팸님',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  '3학년 12반 395번',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        IconButton(
+                          icon: Icon(Icons
+                              .edit), // Using edit icon from Material Icons
+                          onPressed: () {
+                            // Add your onPressed code here
+                          },
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    SizedBox(
+                      width: 600, // Adjust the width
+                      height: 200, // Adjust the height
+                      child: Container(
+                        padding: const EdgeInsets.all(10.0),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: const Text(
+                          '제 동아리 런천미트 아닙니다. 스팸입니다. \n집 ㅈㄴ 가고싶어요',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
+              const SizedBox(height: 10),
+              const ListTile(
+                title: Text('계정'),
+              ),
+              const Divider(),
+              ListTile(
+                title: Text('아이디'),
+                subtitle: Text('any492266'),
+                trailing: Icon(Icons.arrow_forward_ios),
+                onTap: () {
+                  // Add your onTap code here
+                },
+              ),
+              ListTile(
+                title: Text('비밀번호'),
+                subtitle:
+                    Text(_isPasswordVisible ? 'speedat12!' : '************'),
+                trailing: IconButton(
+                  icon: Icon(_isPasswordVisible
+                      ? Icons.visibility
+                      : Icons.visibility_off),
+                  onPressed: () {
+                    setState(() {
+                      _isPasswordVisible = !_isPasswordVisible;
+                    });
+                  },
+                ),
+                onTap: () {
+                  // Add your onTap code here
+                },
+              ),
+              ListTile(
+                title: Text('전화번호'),
+                subtitle: Text('010-9704-7620'),
+                trailing: Icon(Icons.arrow_forward_ios),
+                onTap: () {
+                  // Add your onTap code here
+                },
+              ),
+              const SizedBox(height: 20),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    // 회원 탈퇴 버튼 클릭 시 처리할 동작
+                  },
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.red,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                  ),
+                  child: const Text('회원 탈퇴'),
+                ),
+              ),
+              const SizedBox(height: 20),
             ],
           ),
         ),
       ),
-    );
-  }
-
-  Widget createCell(String content) {
-    return Container(
-      padding: const EdgeInsets.all(8.0),
-      child: Text(
-        content,
-        style: const TextStyle(fontSize: 16.0),
-        textAlign: TextAlign.center,
-      ),
+      // 삽입된 내용 끝
     );
   }
 }
