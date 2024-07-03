@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:speedat_flutter/calendar/calendar.dart';
+import 'package:speedat_flutter/coummunty/community_best.dart';
 import 'package:speedat_flutter/coummunty/communty_post_screen.dart';
 import 'package:speedat_flutter/main.dart';
 import 'package:speedat_flutter/meals/breakfast_screen.dart';
@@ -26,6 +27,8 @@ class App extends StatelessWidget {
         '/my': (context) => MyScreen(),
         '/set': (context) => SetScreen(),
         '/post': (context) => CompostScreen(),
+        '/com': (context) => CommunityScreen(),
+        '/communitybest': (context) => CommunitybestScreen(),
       },
     );
   }
@@ -36,10 +39,11 @@ class CommunityScreen extends StatefulWidget {
   _CommunityScreenState createState() => _CommunityScreenState();
 }
 
+//CommunitybestScreen
 class _CommunityScreenState extends State<CommunityScreen> {
   final List<Map<String, dynamic>> posts = List.generate(10, (index) {
     return {
-      'title': '이 귀여운 사람은 누굴까?',
+      'title': '송하영은 누굴까요?',
       'description': '프로미스나인의 초 귀염둥이...',
       'image': 'assets/images/cat_05.png',
       'time': '30분 전',
@@ -110,7 +114,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                 title: const Text('커뮤니티'),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.pushNamed(context, '/post');
+                  Navigator.pushNamed(context, '/com');
                 },
               ),
               Container(
@@ -186,7 +190,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                         child: Row(
                           children: [
                             _buildTopButton(
-                                context, '커뮤니티 홈', Colors.yellow, true),
+                                context, '커뮤니티 홈', Color(0xFFFEF9C3), true),
                             _buildTopButton(
                                 context, '인기 글', Colors.white, false),
                             _buildTopButton(
@@ -200,28 +204,53 @@ class _CommunityScreenState extends State<CommunityScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 16),
-                      TextField(
-                        decoration: InputDecoration(
-                          hintText: '태그 혹은 제목을 입력해주세요.',
-                          prefixIcon: Icon(Icons.search),
-                          suffixIcon: IconButton(
-                            icon: Icon(Icons.edit),
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/post');
-                            },
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                        ),
-                        onSubmitted: (value) {
-                          // handle search action
-                        },
-                      ),
+                      SizedBox(height: 10),
                       Container(
                         height: 1,
                         color: Colors.grey[300],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, '/post');
+                              },
+                              child: Container(
+                                width: 25, // 아이콘을 포함한 원의 너비
+                                height: 25, // 아이콘을 포함한 원의 높이
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFFFB700),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Icon(Icons.edit,
+                                    color: Colors.black, size: 20), // 아이콘 크기 조정
+                              ),
+                            ),
+                            SizedBox(width: 8),
+                            Text(
+                              '당신만의 글을 작성해보세요!',
+                              style: TextStyle(fontSize: 10),
+                            ),
+                            SizedBox(width: 16),
+                            Expanded(
+                              child: TextField(
+                                style: TextStyle(fontSize: 10.0),
+                                decoration: InputDecoration(
+                                  hintText: '태그 혹은 제목을 입력해주세요.',
+                                  prefixIcon: Icon(Icons.search),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                                onSubmitted: (value) {
+                                  // handle search action
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       // 메인페이지
                       Padding(
@@ -235,7 +264,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '다양한 이야기가 모이는곳,',
+                                    '다양한 이야기가 \n모이는곳,',
                                     style: TextStyle(
                                       fontSize: 24,
                                       fontWeight: FontWeight.w600,
@@ -244,8 +273,8 @@ class _CommunityScreenState extends State<CommunityScreen> {
                                   SizedBox(height: 1),
                                   SizedBox(height: 5),
                                   Text(
-                                    '여기서 새로운 친구를 만나고, 다양한 활동을 경험해 보세요',
-                                    style: TextStyle(fontSize: 10),
+                                    '여기서 새로운 친구를 만나고, \n다양한 활동을 경험해 보세요',
+                                    style: TextStyle(fontSize: 12),
                                   ),
                                 ],
                               ),
@@ -271,7 +300,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                       for (var post in posts)
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, '/compost');
+                            Navigator.pushNamed(context, '/post');
                           },
                           child: PostCard(post: post),
                         ),
@@ -284,7 +313,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                       for (var post in posts)
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, '/compost');
+                            Navigator.pushNamed(context, '/post');
                           },
                           child: PostCard(post: post),
                         ),
@@ -306,7 +335,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
       child: ElevatedButton(
         onPressed: () {
           if (isHome) {
-            Navigator.pushNamed(context, '/');
+            Navigator.pushNamed(context, '/com');
           } else if (title == '인기 글') {
             Navigator.pushNamed(context, '/communitybest');
           } else {

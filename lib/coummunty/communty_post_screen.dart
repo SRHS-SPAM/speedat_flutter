@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:speedat_flutter/calendar/calendar.dart';
+import 'package:speedat_flutter/coummunty/community_best.dart';
 import 'package:speedat_flutter/coummunty/community_screen.dart';
 import 'package:speedat_flutter/main.dart';
 import 'package:speedat_flutter/meals/breakfast_screen.dart';
@@ -25,7 +26,9 @@ class App extends StatelessWidget {
         '/mon': (context) => MonScreen(),
         '/my': (context) => MyScreen(),
         '/set': (context) => SetScreen(),
-        'com': (context) => CommunityScreen(),
+        '/post': (context) => CompostScreen(),
+        '/com': (context) => CommunityScreen(),
+        '/communitybest': (context) => CommunitybestScreen(),
       },
     );
   }
@@ -37,6 +40,18 @@ class CompostScreen extends StatefulWidget {
 }
 
 class _CompostScreenState extends State<CompostScreen> {
+  final List<Map<String, dynamic>> posts = List.generate(10, (index) {
+    return {
+      'title': '송하영은 누굴까요?',
+      'description': '프로미스나인의 초 귀염둥이...',
+      'image': 'assets/images/cat_05.png',
+      'time': '30분 전',
+      'views': 56,
+      'comments': 12,
+      'likes': 999,
+    };
+  });
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -287,6 +302,41 @@ class _CompostScreenState extends State<CompostScreen> {
                           comment: '섹스',
                           timestamp: '2024년 05월 23일',
                         ),
+                        const SizedBox(height: 16),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  '최신 글',
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                            const Divider(color: Colors.grey),
+                            SizedBox(
+                                height:
+                                    16), // Divider와 PostCard 사이의 간격 조정 (원하는 크기로 변경 가능)
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                for (var post in posts)
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.pushNamed(context, '/post');
+                                    },
+                                    child: PostCard(post: post),
+                                  ),
+                                SizedBox(
+                                    height:
+                                        32), // PostCard 아래의 간격 조정 (원하는 크기로 변경 가능)
+                              ],
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ],
@@ -411,14 +461,99 @@ class LogoWidget extends StatelessWidget {
   final IconData icon;
   final VoidCallback? onTap;
 
-  const LogoWidget({Key? key, required this.icon, this.onTap})
-      : super(key: key);
+  const LogoWidget({super.key, required this.icon, this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      icon: Icon(icon, color: Colors.black),
-      onPressed: onTap,
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          width: 28,
+          height: 28,
+          clipBehavior: Clip.antiAlias,
+          decoration: ShapeDecoration(
+            color: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4),
+            ),
+            shadows: const [
+              BoxShadow(
+                color: Color(0x1E000000),
+                blurRadius: 2,
+                offset: Offset(0, 0),
+                spreadRadius: 0,
+              ),
+              BoxShadow(
+                color: Color(0x28000000),
+                blurRadius: 4,
+                offset: Offset(0, 2),
+                spreadRadius: 0,
+              ),
+            ],
+          ),
+          child: Icon(icon),
+        ),
+      ),
+    );
+  }
+}
+
+class PostCard extends StatelessWidget {
+  final Map<String, dynamic> post;
+
+  PostCard({required this.post});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.symmetric(vertical: 8),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Row(
+          children: [
+            // 이미지 추가
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.asset(
+                'assets/images/cat_05.png', // 이미지 경로를 실제 경로로 바꾸세요
+                width: 80,
+                height: 80,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    post['title'],
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 8),
+                  Text(post['description']),
+                  SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Text(post['time']),
+                      Spacer(),
+                      Icon(Icons.remove_red_eye, size: 16),
+                      SizedBox(width: 4),
+                      Text(post['views'].toString()),
+                      SizedBox(width: 16),
+                      Icon(Icons.thumb_up, size: 16), // 좋아요 아이콘으로 변경
+                      SizedBox(width: 4),
+                      Text(post['likes'].toString()), // 좋아요 수
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:speedat_flutter/coummunty/community_best.dart';
 import 'package:speedat_flutter/coummunty/communty_post_screen.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'splash_screen.dart'; // splash_screen.dart 파일을 임포트
@@ -22,15 +23,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => SplashScreen(), // 앱 시작 시 SplashScreen을 표시
+        '/': (context) => SplashScreen(),
         '/home': (context) => HomeScreen(),
         '/bob': (context) => BreakfastScreen(),
         '/cal': (context) => CalScreen(),
         '/mon': (context) => MonScreen(),
         '/my': (context) => MyScreen(),
         '/set': (context) => SetScreen(),
-        '/com': (context) => CommunityScreen(),
         '/post': (context) => CompostScreen(),
+        '/com': (context) => CommunityScreen(),
+        '/communitybest': (context) => CommunitybestScreen(),
       },
     );
   }
