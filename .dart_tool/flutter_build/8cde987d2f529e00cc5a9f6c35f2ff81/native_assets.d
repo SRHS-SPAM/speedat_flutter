@@ -1,0 +1,1 @@
+ /Users/an-yohan/Documents/GitHub/speedat_flutter/.dart_tool/flutter_build/8cde987d2f529e00cc5a9f6c35f2ff81/native_assets.yaml: 
