@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:speedat_flutter/community.dart';
+import 'package:speedat_flutter/community/community.dart';
 import 'package:speedat_flutter/community/community_best.dart';
+import 'package:speedat_flutter/community/community_make.dart';
 
 class CommunityBord extends StatefulWidget {
   @override
@@ -31,6 +32,12 @@ class _CommunityBestState extends State<CommunityBord> {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => CommunityBest()),
+      );
+    }
+    else if (title == '설계과') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => CommunityMake()),
       );
     }
   }
