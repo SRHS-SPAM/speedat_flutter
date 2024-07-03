@@ -1,42 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:speedat_flutter/calendar/calendar.dart';
-import 'package:speedat_flutter/coummunty/community_best.dart';
 import 'package:speedat_flutter/coummunty/community_bord.dart';
-import 'package:speedat_flutter/main.dart';
-import 'package:speedat_flutter/meals/breakfast_screen.dart';
-import 'package:speedat_flutter/schedule/mon_screen.dart';
-import 'package:speedat_flutter/setting_screen.dart';
-import 'package:speedat_flutter/mypage_screen.dart';
+import 'community_best.dart';
 
-void main() {
-  runApp(App());
-}
-
-class App extends StatelessWidget {
+class Community extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      // 라우트 설정 추가
-      routes: {
-        '/home': (context) => HomeScreen(),
-        '/Compost': (context) => CommunityScreen(),
-        '/bob': (context) => BreakfastScreen(),
-        '/mon': (context) => MonScreen(),
-        '/cal': (context) => CalScreen(),
-        '/my': (context) => MyScreen(),
-        '/set': (context) => SetScreen(),
-      },
-      home: CommunityScreen(),
-    );
-  }
+  _CommunityState createState() => _CommunityState();
 }
 
-class CommunityScreen extends StatefulWidget {
-  @override
-  _CommunityScreenState createState() => _CommunityScreenState();
-}
-
-class _CommunityScreenState extends State<CommunityScreen> {
+class _CommunityState extends State<Community> {
   String selectedTab = '커뮤니티 홈';
 
   void onTabSelected(String title) {
@@ -48,10 +19,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
         context,
         MaterialPageRoute(builder: (context) => CommunityBest()),
       );
-    } else if ((title == '시스템과') ||
-        (title == '설계과') ||
-        (title == '제어과') ||
-        (title == '군특성화')) {
+    } else if (title == '시스템과') {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => CommunityBord()),
@@ -64,130 +32,40 @@ class _CommunityScreenState extends State<CommunityScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        automaticallyImplyLeading: false,
-        elevation: 0,
-        title: InkWell(
-          onTap: () {
-            Navigator.pushReplacementNamed(context, '/home');
-          },
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 20.0),
-                child: Image.asset(
-                  'assets/images/logo.png',
-                  height: 70,
-                  fit: BoxFit.contain,
-                ),
+        elevation: 0, // 그림자 제거
+        title: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0), // 왼쪽 여백 추가
+              child: Image.asset(
+                'assets/images/logo.png', // 로고 이미지 경로
+                height: 70, // 이미지 높이 설정
+                fit: BoxFit.contain, // 이미지 비율 유지
               ),
-              const Spacer(),
-            ],
-          ),
+            ),
+            Spacer(), // 남은 공간을 채워서 중앙에 위치하도록 조정
+          ],
         ),
         actions: [
-          const LogoWidget(icon: Icons.person),
-          const LogoWidget(icon: Icons.nightlight_outlined),
-          Builder(
-            builder: (context) => LogoWidget(
-              icon: Icons.menu,
-              onTap: () {
-                Scaffold.of(context).openEndDrawer();
-              },
-            ),
-          ),
+          LogoWidget(icon: Icons.person),
+          LogoWidget(icon: Icons.nightlight_outlined),
+          LogoWidget(icon: Icons.menu),
         ],
-      ),
-      endDrawer: Drawer(
-        child: Container(
-          color: Colors.white,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Container(
-                height: 140,
-                color: Colors.black12,
-              ),
-              ListTile(
-                leading: const Icon(Icons.home_outlined),
-                title: const Text('홈'),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/home');
-                },
-              ),
-              Container(
-                color: Colors.yellow[100],
-                child: ListTile(
-                  leading: const Icon(Icons.language),
-                  title: const Text('커뮤니티'),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, '/Compost');
-                  },
-                ),
-              ),
-              ListTile(
-                leading: const Icon(Icons.restaurant_menu),
-                title: const Text('급십실'),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/bob');
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.schedule),
-                title: const Text('시간표'),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/mon');
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.calendar_today),
-                title: const Text('달력'),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/cal');
-                },
-              ),
-              const Divider(),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
-                child: Text('계정', style: TextStyle(color: Colors.grey)),
-              ),
-              ListTile(
-                leading: const Icon(Icons.person),
-                title: const Text('마이페이지'),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/my');
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.settings),
-                title: const Text('설정'),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/set');
-                },
-              ),
-            ],
-          ),
-        ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // 회색 구분선 (AppBar 아래에 추가)
               Container(
                 height: 1,
                 color: Colors.grey[300],
               ),
               Container(
-                width: double.infinity,
+                width: double.infinity, // 이미지가 화면 너비에 맞게
                 child: Image.asset(
-                  'assets/images/comlabal.png',
+                  'assets/images/comlable.png',
                   fit: BoxFit.fitWidth,
                 ),
               ),
@@ -229,7 +107,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 20), // 이미지 아래 여백 추가
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Row(
@@ -242,8 +120,9 @@ class _CommunityScreenState extends State<CommunityScreen> {
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
-                    const SizedBox(width: 16),
+                    const SizedBox(width: 16), // Text와 TextField 사이의 간격
                     Expanded(
+                      // 텍스트 필드가 남은 공간을 차지하도록
                       child: TextField(
                         decoration: InputDecoration(
                           hintText: '검색',
@@ -315,6 +194,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                   ],
                 ),
               ),
+
               Padding(
                 padding: EdgeInsets.only(left: 15, top: 40),
                 child: Align(
@@ -397,16 +277,17 @@ class _CommunityScreenState extends State<CommunityScreen> {
 
 class LogoWidget extends StatelessWidget {
   final IconData icon;
-  final VoidCallback? onTap; // onTap 속성 추가
 
-  const LogoWidget({required this.icon, this.onTap});
+  LogoWidget({required this.icon});
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
       icon: Icon(icon),
       color: Colors.black,
-      onPressed: onTap, // onTap 속성 사용
+      onPressed: () {
+        // 아이콘 버튼을 눌렀을 때의 동작을 여기에 추가할 수 있습니다.
+      },
     );
   }
 }
@@ -416,11 +297,8 @@ class TabButton extends StatelessWidget {
   final bool isSelected;
   final VoidCallback onPressed;
 
-  TabButton({
-    required this.title,
-    required this.isSelected,
-    required this.onPressed,
-  });
+  TabButton(
+      {required this.title, required this.isSelected, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

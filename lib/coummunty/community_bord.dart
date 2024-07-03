@@ -19,7 +19,7 @@ class _CommunityBestState extends State<CommunityBord> {
     if (title == '커뮤니티 홈') {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => CommunityScreen()),
+        MaterialPageRoute(builder: (context) => Community()),
       );
     } else if (title == '시스템과') {
       Navigator.push(

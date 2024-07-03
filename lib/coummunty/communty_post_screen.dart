@@ -25,7 +25,7 @@ class App extends StatelessWidget {
         '/mon': (context) => MonScreen(),
         '/my': (context) => MyScreen(),
         '/set': (context) => SetScreen(),
-        '/com': (context) => CommunityScreen(),
+        '/com': (context) => Community(),
       },
     );
   }

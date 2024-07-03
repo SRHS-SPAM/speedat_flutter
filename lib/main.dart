@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:speedat_flutter/coummunty/community_best.dart';
+import 'package:speedat_flutter/coummunty/community_bord.dart';
 import 'package:speedat_flutter/coummunty/community_screen.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'splash_screen.dart'; // splash_screen.dart 파일을 임포트
+// ignore: depend_on_referenced_packages
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:speedat_flutter/meals/breakfast_screen.dart';
 import 'package:speedat_flutter/calendar/calendar.dart';
@@ -27,7 +30,9 @@ class MyApp extends StatelessWidget {
         '/mon': (context) => MonScreen(),
         '/my': (context) => MyScreen(),
         '/set': (context) => SetScreen(),
-        '/com': (context) => CommunityScreen(),
+        '/com': (context) => Community(),
+        '/best': (context) => CommunityBest(),
+        '/system': (context) => CommunityBord(),
       },
     );
   }
@@ -98,7 +103,7 @@ class HomeScreen extends StatelessWidget {
                 title: const Text('커뮤니티'),
                 onTap: () {
                   Navigator.pop(context); // 드로어 닫기
-                  Navigator.pushNamed(context, '/com'); // '/main'으로 이동
+                  Navigator.pushNamed(context, '/com');
                 },
               ),
               ListTile(
