@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:speedat_flutter/coummunty/community_best.dart';
-import 'package:speedat_flutter/coummunty/community_bord.dart';
-import 'package:speedat_flutter/coummunty/community_screen.dart';
+import 'package:speedat_flutter/coummunty/communty_post_screen.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'splash_screen.dart'; // splash_screen.dart 파일을 임포트
 // ignore: depend_on_referenced_packages
@@ -11,6 +9,7 @@ import 'package:speedat_flutter/calendar/calendar.dart';
 import 'package:speedat_flutter/schedule/mon_screen.dart';
 import 'package:speedat_flutter/mypage_screen.dart';
 import 'package:speedat_flutter/setting_screen.dart';
+import 'package:speedat_flutter/coummunty/community_screen.dart';
 
 void main() {
   initializeDateFormatting().then((_) => runApp(MyApp()));
@@ -30,9 +29,8 @@ class MyApp extends StatelessWidget {
         '/mon': (context) => MonScreen(),
         '/my': (context) => MyScreen(),
         '/set': (context) => SetScreen(),
-        '/com': (context) => Community(),
-        '/best': (context) => CommunityBest(),
-        '/system': (context) => CommunityBord(),
+        '/com': (context) => CommunityScreen(),
+        '/post': (context) => CompostScreen(),
       },
     );
   }
@@ -844,8 +842,11 @@ class MealCard extends StatelessWidget {
                 const EdgeInsets.symmetric(horizontal: 45.0, vertical: 8.0),
             child: ElevatedButton(
               style: ButtonStyle(
+                // ignore: deprecated_member_use
                 backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                  // ignore: deprecated_member_use
                   (Set<MaterialState> states) {
+                    // ignore: deprecated_member_use
                     if (states.contains(MaterialState.disabled)) {
                       return Colors.grey; // 비활성 상태 배경색
                     }

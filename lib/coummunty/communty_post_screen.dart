@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:speedat_flutter/calendar/calendar.dart';
+import 'package:speedat_flutter/coummunty/community_screen.dart';
 import 'package:speedat_flutter/main.dart';
 import 'package:speedat_flutter/meals/breakfast_screen.dart';
+import 'package:speedat_flutter/mypage_screen.dart';
 import 'package:speedat_flutter/schedule/mon_screen.dart';
 import 'package:speedat_flutter/setting_screen.dart';
 import 'package:speedat_flutter/splash_screen.dart';
-import 'package:speedat_flutter/mypage_screen.dart';
-import 'package:speedat_flutter/coummunty/community_screen.dart';
 
 void main() {
   runApp(App());
@@ -18,14 +18,14 @@ class App extends StatelessWidget {
     return MaterialApp(
       home: CompostScreen(),
       routes: {
-        '/': (context) => SplashScreen(), // 앱 시작 시 SplashScreen을 표시
+        '/': (context) => SplashScreen(),
         '/home': (context) => HomeScreen(),
         '/bob': (context) => BreakfastScreen(),
         '/cal': (context) => CalScreen(),
         '/mon': (context) => MonScreen(),
         '/my': (context) => MyScreen(),
         '/set': (context) => SetScreen(),
-        '/com': (context) => Community(),
+        'com': (context) => CommunityScreen(),
       },
     );
   }
@@ -100,7 +100,7 @@ class _CompostScreenState extends State<CompostScreen> {
                   title: const Text('커뮤니티'),
                   onTap: () {
                     Navigator.pop(context); // 드로어 닫기
-                    Navigator.pushNamed(context, '/Compost'); // '/main'으로 이동
+                    Navigator.pushNamed(context, '/compost'); // '/main'으로 이동
                   },
                 ),
               ),
@@ -169,13 +169,13 @@ class _CompostScreenState extends State<CompostScreen> {
                     icon: Icon(Icons.arrow_back, color: Colors.black),
                     onPressed: () {
                       Navigator.pushNamed(
-                          context, '/'); // community_screen.dart로 이동
+                          context, '/com'); // community_screen.dart로 이동
                     },
                   ),
                   const Padding(
                     padding: EdgeInsets.only(left: 1.0),
                     child: Text(
-                      '프로미스나인 송하영은 누구인가',
+                      '이 귀여운 사람은 누굴까?',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
