@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:speedat_flutter/coummunty/community_screen.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'splash_screen.dart'; // splash_screen.dart 파일을 임포트
 import 'package:intl/date_symbol_data_local.dart';
@@ -7,7 +8,6 @@ import 'package:speedat_flutter/calendar/calendar.dart';
 import 'package:speedat_flutter/schedule/mon_screen.dart';
 import 'package:speedat_flutter/mypage_screen.dart';
 import 'package:speedat_flutter/setting_screen.dart';
-import 'package:speedat_flutter/coummunty/communty_post_screen.dart';
 
 void main() {
   initializeDateFormatting().then((_) => runApp(MyApp()));
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         '/mon': (context) => MonScreen(),
         '/my': (context) => MyScreen(),
         '/set': (context) => SetScreen(),
-        '/compost': (context) => CompostScreen(),
+        '/com': (context) => CommunityScreen(),
       },
     );
   }
@@ -98,7 +98,7 @@ class HomeScreen extends StatelessWidget {
                 title: const Text('커뮤니티'),
                 onTap: () {
                   Navigator.pop(context); // 드로어 닫기
-                  Navigator.pushNamed(context, '/compost'); // '/main'으로 이동
+                  Navigator.pushNamed(context, '/com'); // '/main'으로 이동
                 },
               ),
               ListTile(

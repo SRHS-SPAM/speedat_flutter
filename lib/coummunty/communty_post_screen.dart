@@ -169,7 +169,7 @@ class _CompostScreenState extends State<CompostScreen> {
                     icon: Icon(Icons.arrow_back, color: Colors.black),
                     onPressed: () {
                       Navigator.pushNamed(
-                          context, '/com'); // community_screen.dart로 이동
+                          context, '/'); // community_screen.dart로 이동
                     },
                   ),
                   const Padding(

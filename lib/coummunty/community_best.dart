@@ -12,16 +12,86 @@ class _CommunityBestState extends State<CommunityBest> {
   int totalPages = 10;
 
   List<Map<String, dynamic>> posts = [
-    {'title': '커뮤니티 글 1', 'description': '여기는 커뮤니티 글 1에 대한 설명입니다.', 'time': '30분 전', 'views': 56, 'likes': 12, 'imageAsset': 'assets/images/communty.png'},
-    {'title': '커뮤니티 글 2', 'description': '여기는 커뮤니티 글 2에 대한 설명입니다.', 'time': '29분 전', 'views': 56, 'likes': 10, 'imageAsset': 'assets/images/communty.png'},
-    {'title': '커뮤니티 글 3', 'description': '여기는 커뮤니티 글 3에 대한 설명입니다.', 'time': '28분 전', 'views': 56, 'likes': 8, 'imageAsset': 'assets/images/communty.png'},
-    {'title': '커뮤니티 글 1', 'description': '여기는 커뮤니티 글 1에 대한 설명입니다.', 'time': '30분 전', 'views': 56, 'likes': 7, 'imageAsset': 'assets/images/communty.png'},
-    {'title': '커뮤니티 글 1', 'description': '여기는 커뮤니티 글 1에 대한 설명입니다.', 'time': '30분 전', 'views': 56, 'likes': 6, 'imageAsset': 'assets/images/communty.png'},
-    {'title': '커뮤니티 글 1', 'description': '여기는 커뮤니티 글 1에 대한 설명입니다.', 'time': '30분 전', 'views': 56, 'likes': 5, 'imageAsset': 'assets/images/communty.png'},
-    {'title': '커뮤니티 글 1', 'description': '여기는 커뮤니티 글 1에 대한 설명입니다.', 'time': '30분 전', 'views': 56, 'likes': 4, 'imageAsset': 'assets/images/communty.png'},
-    {'title': '커뮤니티 글 1', 'description': '여기는 커뮤니티 글 1에 대한 설명입니다.', 'time': '30분 전', 'views': 56, 'likes': 3, 'imageAsset': 'assets/images/communty.png'},
-    {'title': '커뮤니티 글 1', 'description': '여기는 커뮤니티 글 1에 대한 설명입니다.', 'time': '30분 전', 'views': 56, 'likes': 2, 'imageAsset': 'assets/images/communty.png'},
-    {'title': '커뮤니티 글 1', 'description': '여기는 커뮤니티 글 1에 대한 설명입니다.', 'time': '30분 전', 'views': 56, 'likes': 1, 'imageAsset': 'assets/images/communty.png'},
+    {
+      'title': '커뮤니티 글 1',
+      'description': '여기는 커뮤니티 글 1에 대한 설명입니다.',
+      'time': '30분 전',
+      'views': 56,
+      'likes': 12,
+      'imageAsset': 'assets/images/communty.png'
+    },
+    {
+      'title': '커뮤니티 글 2',
+      'description': '여기는 커뮤니티 글 2에 대한 설명입니다.',
+      'time': '29분 전',
+      'views': 56,
+      'likes': 10,
+      'imageAsset': 'assets/images/communty.png'
+    },
+    {
+      'title': '커뮤니티 글 3',
+      'description': '여기는 커뮤니티 글 3에 대한 설명입니다.',
+      'time': '28분 전',
+      'views': 56,
+      'likes': 8,
+      'imageAsset': 'assets/images/communty.png'
+    },
+    {
+      'title': '커뮤니티 글 1',
+      'description': '여기는 커뮤니티 글 1에 대한 설명입니다.',
+      'time': '30분 전',
+      'views': 56,
+      'likes': 7,
+      'imageAsset': 'assets/images/communty.png'
+    },
+    {
+      'title': '커뮤니티 글 1',
+      'description': '여기는 커뮤니티 글 1에 대한 설명입니다.',
+      'time': '30분 전',
+      'views': 56,
+      'likes': 6,
+      'imageAsset': 'assets/images/communty.png'
+    },
+    {
+      'title': '커뮤니티 글 1',
+      'description': '여기는 커뮤니티 글 1에 대한 설명입니다.',
+      'time': '30분 전',
+      'views': 56,
+      'likes': 5,
+      'imageAsset': 'assets/images/communty.png'
+    },
+    {
+      'title': '커뮤니티 글 1',
+      'description': '여기는 커뮤니티 글 1에 대한 설명입니다.',
+      'time': '30분 전',
+      'views': 56,
+      'likes': 4,
+      'imageAsset': 'assets/images/communty.png'
+    },
+    {
+      'title': '커뮤니티 글 1',
+      'description': '여기는 커뮤니티 글 1에 대한 설명입니다.',
+      'time': '30분 전',
+      'views': 56,
+      'likes': 3,
+      'imageAsset': 'assets/images/communty.png'
+    },
+    {
+      'title': '커뮤니티 글 1',
+      'description': '여기는 커뮤니티 글 1에 대한 설명입니다.',
+      'time': '30분 전',
+      'views': 56,
+      'likes': 2,
+      'imageAsset': 'assets/images/communty.png'
+    },
+    {
+      'title': '커뮤니티 글 1',
+      'description': '여기는 커뮤니티 글 1에 대한 설명입니다.',
+      'time': '30분 전',
+      'views': 56,
+      'likes': 1,
+      'imageAsset': 'assets/images/communty.png'
+    },
 
     // Add more mock posts here
   ];
@@ -32,8 +102,7 @@ class _CommunityBestState extends State<CommunityBest> {
     });
     if (title == '커뮤니티 홈') {
       Navigator.pop(context);
-    }
-    else if (title == '시스템과') {
+    } else if (title == '시스템과') {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => CommunityBord()),
@@ -134,11 +203,13 @@ class _CommunityBestState extends State<CommunityBest> {
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Row(
                   children: [
-                    Icon(Icons.edit, color: Color.fromARGB(255, 253, 176, 10), size: 30),
+                    Icon(Icons.edit,
+                        color: Color.fromARGB(255, 253, 176, 10), size: 30),
                     const SizedBox(width: 8),
                     Text(
                       '당신만의 글을 작성해보세요!',
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 16),
                     Expanded(
@@ -156,7 +227,6 @@ class _CommunityBestState extends State<CommunityBest> {
                   ],
                 ),
               ),
-              
               SizedBox(height: 35),
               Padding(
                 padding: EdgeInsets.only(left: 15, top: 40),
@@ -232,7 +302,8 @@ class TabButton extends StatelessWidget {
   final bool isSelected;
   final VoidCallback onPressed;
 
-  TabButton({required this.title, required this.isSelected, required this.onPressed});
+  TabButton(
+      {required this.title, required this.isSelected, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -241,7 +312,9 @@ class TabButton extends StatelessWidget {
       child: TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(
-          backgroundColor: isSelected ? Color.fromARGB(255, 253, 176, 10) : Colors.transparent,
+          backgroundColor: isSelected
+              ? Color.fromARGB(255, 253, 176, 10)
+              : Colors.transparent,
           foregroundColor: Colors.black,
         ),
         child: Text(
@@ -285,7 +358,9 @@ class CommunityCard extends StatelessWidget {
         ),
         title: Row(
           children: [
-            Text('$rank위 ', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange)),
+            Text('$rank위 ',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.orange)),
             Expanded(child: Text(title)),
           ],
         ),
@@ -349,7 +424,8 @@ class PaginationWidget extends StatelessWidget {
     );
     pageNumbers.add(
       IconButton(
-        onPressed: currentPage > 1 ? () => onPageChanged(currentPage - 1) : null,
+        onPressed:
+            currentPage > 1 ? () => onPageChanged(currentPage - 1) : null,
         icon: Icon(Icons.chevron_left),
         color: Colors.orange,
       ),
@@ -357,7 +433,10 @@ class PaginationWidget extends StatelessWidget {
 
     // Add page number buttons
     for (int i = 1; i <= totalPages; i++) {
-      if (i == currentPage || i == 1 || i == totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+      if (i == currentPage ||
+          i == 1 ||
+          i == totalPages ||
+          (i >= currentPage - 1 && i <= currentPage + 1)) {
         pageNumbers.add(
           GestureDetector(
             onTap: () => onPageChanged(i),
@@ -371,7 +450,8 @@ class PaginationWidget extends StatelessWidget {
                 i.toString(),
                 style: TextStyle(
                   color: currentPage == i ? Colors.black : Colors.grey,
-                  fontWeight: currentPage == i ? FontWeight.bold : FontWeight.normal,
+                  fontWeight:
+                      currentPage == i ? FontWeight.bold : FontWeight.normal,
                 ),
               ),
             ),
@@ -393,14 +473,17 @@ class PaginationWidget extends StatelessWidget {
     // Add next and last buttons
     pageNumbers.add(
       IconButton(
-        onPressed: currentPage < totalPages ? () => onPageChanged(currentPage + 1) : null,
+        onPressed: currentPage < totalPages
+            ? () => onPageChanged(currentPage + 1)
+            : null,
         icon: Icon(Icons.chevron_right),
         color: Colors.orange,
       ),
     );
     pageNumbers.add(
       IconButton(
-        onPressed: currentPage < totalPages ? () => onPageChanged(totalPages) : null,
+        onPressed:
+            currentPage < totalPages ? () => onPageChanged(totalPages) : null,
         icon: Icon(Icons.last_page),
         color: Colors.orange,
       ),
