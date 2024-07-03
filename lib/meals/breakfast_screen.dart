@@ -99,7 +99,7 @@ class _BreakfastScreenState extends State<BreakfastScreen> {
                 title: const Text('커뮤니티'),
                 onTap: () {
                   Navigator.pop(context); // 드로어 닫기
-                  Navigator.pushNamed(context, '/compost'); // '/main'으로 이동
+                  Navigator.pushNamed(context, '/com'); // '/main'으로 이동
                 },
               ),
               Container(
