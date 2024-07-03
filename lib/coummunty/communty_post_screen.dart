@@ -80,7 +80,13 @@ class _CompostScreenState extends State<CompostScreen> {
           ),
         ),
         actions: [
-          const LogoWidget(icon: Icons.person),
+          // 마이페이지 이동 로고
+          LogoWidget(
+            icon: Icons.person,
+            onTap: () {
+              Navigator.pushNamed(context, '/my'); // '/my'는 마이페이지 라우트 이름입니다.
+            },
+          ),
           const LogoWidget(icon: Icons.nightlight_outlined),
           Builder(
             builder: (context) => LogoWidget(

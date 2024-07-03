@@ -71,7 +71,13 @@ class _CummunitypostmakeScreenState extends State<CummunitypostmakeScreen> {
           ),
         ),
         actions: [
-          const LogoWidget(icon: Icons.person),
+          // 마이페이지 이동 로고
+          LogoWidget(
+            icon: Icons.person,
+            onTap: () {
+              Navigator.pushNamed(context, '/my'); // '/my'는 마이페이지 라우트 이름입니다.
+            },
+          ),
           const LogoWidget(icon: Icons.nightlight_outlined),
           Builder(
             builder: (context) => LogoWidget(
@@ -174,7 +180,7 @@ class _CummunitypostmakeScreenState extends State<CummunitypostmakeScreen> {
             SizedBox(height: 16),
             DropdownButtonFormField<String>(
               hint: Text('게시판 선택'),
-              items: <String>['게시판 1', '게시판 2', '게시판 3'].map((String value) {
+              items: <String>['설계과', '제어과', '시스템과', '군특성화'].map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),

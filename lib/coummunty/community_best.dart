@@ -65,25 +65,31 @@ class _CommunitybestScreenState extends State<CommunitybestScreen> {
         elevation: 0,
         title: InkWell(
           onTap: () {
-            Navigator.pushReplacementNamed(context, '/home');
+            Navigator.pushReplacementNamed(context, '/home'); // 메인 화면으로 이동
           },
           child: Row(
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 20.0),
                 child: Image.asset(
-                  'assets/images/logo.png', // Updated image path
+                  'assets/images/logo.png', // 로고 이미지 경로
                   height: 70,
                   fit: BoxFit.contain,
                 ),
               ),
-              Spacer(),
+              const Spacer(),
             ],
           ),
         ),
         actions: [
-          LogoWidget(icon: Icons.person),
-          LogoWidget(icon: Icons.nightlight_outlined),
+          // 마이페이지 이동 로고
+          LogoWidget(
+            icon: Icons.person,
+            onTap: () {
+              Navigator.pushNamed(context, '/my'); // '/my'는 마이페이지 라우트 이름입니다.
+            },
+          ),
+          const LogoWidget(icon: Icons.nightlight_outlined),
           Builder(
             builder: (context) => LogoWidget(
               icon: Icons.menu,
