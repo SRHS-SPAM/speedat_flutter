@@ -114,7 +114,7 @@ class _MonScreenState extends State<MonScreen> {
               ),
               ListTile(
                 leading: const Icon(Icons.restaurant_menu),
-                title: const Text('급십실'),
+                title: const Text('급십표'),
                 onTap: () {
                   Navigator.pop(context); // 드로어 닫기
                   Navigator.pushNamed(context, '/bob'); // '/main'으로 이동
