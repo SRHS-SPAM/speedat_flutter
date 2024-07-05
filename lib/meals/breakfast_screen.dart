@@ -112,7 +112,7 @@ class _BreakfastScreenState extends State<BreakfastScreen> {
                 color: Colors.yellow[100], // '시간표' 항목 배경색을 연한 노란색으로 설정
                 child: ListTile(
                   leading: const Icon(Icons.restaurant_menu),
-                  title: const Text('급식실'),
+                  title: const Text('급식표'),
                   onTap: () {
                     Navigator.pop(context); // 드로어 닫기
                     Navigator.pushNamed(context, '/bob'); // '/main'으로 이동
