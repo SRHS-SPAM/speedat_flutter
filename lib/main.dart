@@ -259,17 +259,19 @@ class HomeScreen extends StatelessWidget {
               ),
 
               // 달력 mealcard
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                    width: 400,
-                    child: MealCardWithCalendar(
-                      mealType: '',
-                      menu: '',
-                    ),
-                  ),
-                ],
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  double calendarWidth = constraints.maxWidth - 30; // 적절한 너비 설정
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        width: calendarWidth,
+                        child: MealCardWithCalendar(mealType: '', menu: ''),
+                      ),
+                    ],
+                  );
+                },
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),

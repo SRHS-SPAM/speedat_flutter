@@ -220,14 +220,14 @@ class _SetScreenState extends State<SetScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: const [
                                 Text(
-                                  '김스팸님',
+                                  '안요한',
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 Text(
-                                  '3학년 12반 395번',
+                                  '2학년 6반 5번',
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.grey,
