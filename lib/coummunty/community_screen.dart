@@ -180,6 +180,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
           ),
         ),
       ),
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
